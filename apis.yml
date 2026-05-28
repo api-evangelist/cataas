@@ -1,0 +1,32 @@
+aid: cataas
+name: Cataas
+description: "Cat as a service (cats pictures and gifs)"
+url: https://cataas.com/
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Animals"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Animals
+  - Public APIs
+apis:
+  - name: Cataas
+    description: "Cat as a service (cats pictures and gifs)"
+    humanURL: https://cataas.com/
+    baseURL: https://cataas.com/
+    tags:
+      - Animals
+    properties:
+      - type: Documentation
+        url: https://cataas.com/
+common:
+  - type: Website
+    url: https://cataas.com/
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
