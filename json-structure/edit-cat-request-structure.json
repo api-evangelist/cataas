@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cataas/refs/heads/main/json-structure/edit-cat-request-structure.json",
+  "name": "EditCatRequest",
+  "description": "Payload for editing a cat document.",
+  "type": "object",
+  "required": [
+    "tags"
+  ],
+  "properties": {
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated list of tags to set on the cat.",
+      "example": "cute,orange,sleepy"
+    }
+  }
+}

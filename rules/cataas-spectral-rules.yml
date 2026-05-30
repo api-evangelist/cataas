@@ -1,0 +1,321 @@
+extends:
+  - spectral:oas
+
+# Cataas (Cat as a Service) Spectral ruleset.
+# Enforces the conventions found in the OpenAPI surface of cataas.com:
+# - Title-case operation summaries prefixed with "CATAAS"
+# - lowerCamelCase operationIds with verb prefixes
+# - kebab-case path segments
+# - snake_case schema property names
+# - JSON or image responses with declared content types
+# - HTTPS-only servers
+# - Bearer auth on admin endpoints
+
+rules:
+
+  # ----------------------------------------------------------------
+  # INFO / METADATA
+  # ----------------------------------------------------------------
+  info-title-cataas-prefix:
+    description: "Info title must include the Cataas brand."
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*[Cc]ataas.*"
+  info-description-required:
+    description: "Info description is required and must be substantive."
+    severity: warn
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+  info-contact-defined:
+    description: "Info contact block should be defined."
+    severity: info
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+  info-license-defined:
+    description: "Info license block should be defined."
+    severity: info
+    given: "$.info"
+    then:
+      field: license
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # OPENAPI VERSION
+  # ----------------------------------------------------------------
+  openapi-version-3:
+    description: "OpenAPI version must be 3.x."
+    severity: error
+    given: "$.openapi"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # ----------------------------------------------------------------
+  # SERVERS
+  # ----------------------------------------------------------------
+  servers-https-required:
+    description: "Server URLs must use HTTPS."
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  servers-description-required:
+    description: "Each server should have a description."
+    severity: warn
+    given: "$.servers[*]"
+    then:
+      field: description
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # PATHS — NAMING CONVENTIONS
+  # ----------------------------------------------------------------
+  paths-kebab-case:
+    description: "Path segments must use lowercase kebab-case (excluding {placeholders})."
+    severity: warn
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/([a-z0-9]+(-[a-z0-9]+)*|\\{[a-zA-Z]+\\}))+$"
+  paths-no-trailing-slash:
+    description: "Paths must not end with a trailing slash."
+    severity: error
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+  paths-no-query-string:
+    description: "Paths must not contain query strings."
+    severity: error
+    given: "$.paths.*~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  # ----------------------------------------------------------------
+  # OPERATIONS
+  # ----------------------------------------------------------------
+  operation-operationid-required:
+    description: "Every operation must have an operationId."
+    severity: error
+    given: "$.paths.*.*"
+    then:
+      field: operationId
+      function: truthy
+  operation-operationid-camel-case:
+    description: "operationId must be lowerCamelCase."
+    severity: warn
+    given: "$.paths.*.*.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  operation-operationid-verb-prefix:
+    description: "operationId should begin with a recognised verb (get/list/create/update/delete/upload/admin)."
+    severity: warn
+    given: "$.paths.*.*.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(get|list|create|update|patch|delete|upload|admin)"
+  operation-summary-required:
+    description: "Every operation must have a summary."
+    severity: error
+    given: "$.paths.*.*"
+    then:
+      field: summary
+      function: truthy
+  operation-summary-cataas-prefix:
+    description: "Operation summaries should begin with 'CATAAS'."
+    severity: warn
+    given: "$.paths.*.*.summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^CATAAS "
+  operation-description-required:
+    description: "Every operation must have a description."
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      field: description
+      function: truthy
+  operation-tags-required:
+    description: "Every operation must have at least one tag."
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      field: tags
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # TAGS
+  # ----------------------------------------------------------------
+  tag-global-list-defined:
+    description: "Global tags array must be defined."
+    severity: warn
+    given: "$"
+    then:
+      field: tags
+      function: truthy
+  tag-description-required:
+    description: "Each global tag must have a description."
+    severity: warn
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+  tag-title-case:
+    description: "Tag names must be Title Case (no hyphens, no underscores)."
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$"
+
+  # ----------------------------------------------------------------
+  # PARAMETERS
+  # ----------------------------------------------------------------
+  parameter-description-required:
+    description: "Every parameter must have a description."
+    severity: warn
+    given: "$.paths.*.*.parameters[*]"
+    then:
+      field: description
+      function: truthy
+  parameter-schema-required:
+    description: "Every parameter must define a schema."
+    severity: error
+    given: "$.paths.*.*.parameters[*]"
+    then:
+      field: schema
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # REQUEST BODIES
+  # ----------------------------------------------------------------
+  request-body-content-required:
+    description: "Request bodies must declare content."
+    severity: error
+    given: "$.paths.*.*.requestBody"
+    then:
+      field: content
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # RESPONSES
+  # ----------------------------------------------------------------
+  response-success-required:
+    description: "Every operation must define at least one 2xx response."
+    severity: error
+    given: "$.paths.*.*.responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^(2[0-9][0-9]|204)$":
+              type: object
+          additionalProperties: true
+  response-description-required:
+    description: "Every response must have a description."
+    severity: error
+    given: "$.paths.*.*.responses.*"
+    then:
+      field: description
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # SCHEMAS — PROPERTY NAMING
+  # ----------------------------------------------------------------
+  schema-property-snake-case:
+    description: "Schema property names should be snake_case (with allowance for camelCase font* overlay params)."
+    severity: info
+    given: "$.components.schemas.*.properties.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(_?[a-z][a-z0-9_]*|font[A-Z][a-zA-Z]+)$"
+  schema-type-required:
+    description: "Schema property must declare a type (or $ref / oneOf / anyOf / allOf)."
+    severity: warn
+    given: "$.components.schemas.*.properties.*"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+            - required: ["type"]
+            - required: ["$ref"]
+            - required: ["oneOf"]
+            - required: ["anyOf"]
+            - required: ["allOf"]
+
+  # ----------------------------------------------------------------
+  # SECURITY
+  # ----------------------------------------------------------------
+  security-schemes-defined:
+    description: "Security schemes must be defined under components."
+    severity: warn
+    given: "$.components"
+    then:
+      field: securitySchemes
+      function: truthy
+  security-admin-bearer:
+    description: "Admin operations should require bearer auth."
+    severity: warn
+    given: "$.paths[?(@property.match(/^\\/admin\\//))].*"
+    then:
+      field: security
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # HTTP METHOD CONVENTIONS
+  # ----------------------------------------------------------------
+  http-get-no-request-body:
+    description: "GET operations must not define a request body."
+    severity: error
+    given: "$.paths.*.get"
+    then:
+      field: requestBody
+      function: falsy
+  http-delete-no-request-body:
+    description: "DELETE operations must not define a request body."
+    severity: error
+    given: "$.paths.*.delete"
+    then:
+      field: requestBody
+      function: falsy
+  http-post-has-request-body:
+    description: "POST operations should define a request body."
+    severity: warn
+    given: "$.paths.*.post"
+    then:
+      field: requestBody
+      function: truthy
+
+  # ----------------------------------------------------------------
+  # GENERAL QUALITY
+  # ----------------------------------------------------------------
+  microcks-extension-encouraged:
+    description: "Operations should define x-microcks-operation for mock compatibility."
+    severity: info
+    given: "$.paths.*.*"
+    then:
+      field: x-microcks-operation
+      function: truthy

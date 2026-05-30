@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cataas/refs/heads/main/json-schema/edit-cat-request-schema.json",
+  "title": "EditCatRequest",
+  "description": "Payload for editing a cat document.",
+  "type": "object",
+  "properties": {
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated list of tags to set on the cat.",
+      "example": "cute,orange,sleepy"
+    }
+  },
+  "required": [
+    "tags"
+  ]
+}

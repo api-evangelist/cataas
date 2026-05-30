@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cataas": "https://cataas.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Cat": "cataas:Cat",
+    "CountResponse": "cataas:CountResponse",
+    "UploadCatRequest": "cataas:UploadCatRequest",
+    "EditCatRequest": "cataas:EditCatRequest",
+    "Id": {
+      "@id": "cataas:_id",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "cataas:id",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "cataas:tags",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "mimetype": {
+      "@id": "cataas:mimetype",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "cataas:size",
+      "@type": "xsd:integer"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated"
+    },
+    "editedAt": {
+      "@id": "schema:dateModified"
+    },
+    "validated": {
+      "@id": "cataas:validated",
+      "@type": "xsd:boolean"
+    },
+    "url": {
+      "@id": "schema:url"
+    },
+    "count": {
+      "@id": "cataas:count",
+      "@type": "xsd:integer"
+    },
+    "file": {
+      "@id": "cataas:file",
+      "@type": "xsd:string"
+    }
+  }
+}

@@ -1,0 +1,651 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cataas API — Cats
+  description: 'Cats surface of the Cataas (Cat as a Service) API. 7 operations. Lead operation: CATAAS Get a Random Cat Image. Self-contained Naftiko capability covering one Cataas business surface.'
+  tags:
+  - Cataas
+  - Cats
+  created: '2026-05-30'
+  modified: '2026-05-30'
+capability:
+  consumes:
+  - type: http
+    namespace: cataas-cats
+    baseUri: https://cataas.com
+    description: Cataas API — Cats business capability. Self-contained, no shared references.
+    resources:
+    - name: cat
+      path: /cat
+      operations:
+      - name: getRandomCat
+        method: GET
+        description: CATAAS Get a Random Cat Image
+        inputParameters:
+        - name: json
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return a JSON metadata document instead of the binary image.
+        - name: html
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return an HTML page that embeds the image.
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Sized variant of the image.
+        - name: width
+          in: query
+          type: integer
+          required: false
+          description: Resize the image to the specified width in pixels (max 1000).
+        - name: height
+          in: query
+          type: integer
+          required: false
+          description: Resize the image to the specified height in pixels (max 1000).
+        - name: fit
+          in: query
+          type: string
+          required: false
+          description: Resize strategy when both width and height are provided.
+        - name: position
+          in: query
+          type: string
+          required: false
+          description: Position of the cropped image when `fit=cover` or `fit=contain`.
+        - name: filter
+          in: query
+          type: string
+          required: false
+          description: Visual filter applied to the image.
+        - name: blur
+          in: query
+          type: number
+          required: false
+          description: Blur radius when `filter=blur`.
+        - name: brightness
+          in: query
+          type: number
+          required: false
+          description: Brightness multiplier for `filter=custom`.
+        - name: lightness
+          in: query
+          type: number
+          required: false
+          description: Lightness offset for `filter=custom`.
+        - name: saturation
+          in: query
+          type: number
+          required: false
+          description: Saturation multiplier for `filter=custom`.
+        - name: hue
+          in: query
+          type: integer
+          required: false
+          description: Hue rotation in degrees for `filter=custom`.
+        - name: r
+          in: query
+          type: integer
+          required: false
+          description: Red channel multiplier (0-255) for `filter=custom`.
+        - name: g
+          in: query
+          type: integer
+          required: false
+          description: Green channel multiplier (0-255) for `filter=custom`.
+        - name: b
+          in: query
+          type: integer
+          required: false
+          description: Blue channel multiplier (0-255) for `filter=custom`.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cat-tag
+      path: /cat/{tag}
+      operations:
+      - name: getRandomCatByTag
+        method: GET
+        description: CATAAS Get a Random Cat Image by Tag
+        inputParameters:
+        - name: tag
+          in: path
+          type: string
+          required: true
+          description: 'One tag or several comma-separated tags. Example: `cute` or `cute,orange`.'
+        - name: json
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return a JSON metadata document instead of the binary image.
+        - name: html
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return an HTML page that embeds the image.
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Sized variant of the image.
+        - name: width
+          in: query
+          type: integer
+          required: false
+          description: Resize the image to the specified width in pixels (max 1000).
+        - name: height
+          in: query
+          type: integer
+          required: false
+          description: Resize the image to the specified height in pixels (max 1000).
+        - name: fit
+          in: query
+          type: string
+          required: false
+          description: Resize strategy when both width and height are provided.
+        - name: position
+          in: query
+          type: string
+          required: false
+          description: Position of the cropped image when `fit=cover` or `fit=contain`.
+        - name: filter
+          in: query
+          type: string
+          required: false
+          description: Visual filter applied to the image.
+        - name: blur
+          in: query
+          type: number
+          required: false
+          description: Blur radius when `filter=blur`.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cat-gif
+      path: /cat/gif
+      operations:
+      - name: getRandomCatGif
+        method: GET
+        description: CATAAS Get a Random Cat GIF
+        inputParameters:
+        - name: json
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return a JSON metadata document instead of the binary image.
+        - name: html
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return an HTML page that embeds the image.
+        - name: width
+          in: query
+          type: integer
+          required: false
+          description: Resize the image to the specified width in pixels (max 1000).
+        - name: height
+          in: query
+          type: integer
+          required: false
+          description: Resize the image to the specified height in pixels (max 1000).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cat-says-text
+      path: /cat/says/{text}
+      operations:
+      - name: getRandomCatSays
+        method: GET
+        description: CATAAS Get a Random Cat Image with Text Overlay
+        inputParameters:
+        - name: text
+          in: path
+          type: string
+          required: true
+          description: Text to overlay onto the image.
+        - name: fontSize
+          in: query
+          type: integer
+          required: false
+          description: Font size in pixels for `/says/` text overlays.
+        - name: fontColor
+          in: query
+          type: string
+          required: false
+          description: Font color name or hex value (e.g., `red`, `#ffffff`).
+        - name: fontBackground
+          in: query
+          type: string
+          required: false
+          description: Background color behind the overlay text.
+        - name: json
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return a JSON metadata document instead of the binary image.
+        - name: html
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return an HTML page that embeds the image.
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Sized variant of the image.
+        - name: filter
+          in: query
+          type: string
+          required: false
+          description: Visual filter applied to the image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cat-tag-says-text
+      path: /cat/{tag}/says/{text}
+      operations:
+      - name: getRandomCatByTagSays
+        method: GET
+        description: CATAAS Get a Random Tagged Cat with Text Overlay
+        inputParameters:
+        - name: tag
+          in: path
+          type: string
+          required: true
+          description: One or more comma-separated tags.
+        - name: text
+          in: path
+          type: string
+          required: true
+          description: Text to overlay onto the image.
+        - name: fontSize
+          in: query
+          type: integer
+          required: false
+          description: Font size in pixels for `/says/` text overlays.
+        - name: fontColor
+          in: query
+          type: string
+          required: false
+          description: Font color name or hex value (e.g., `red`, `#ffffff`).
+        - name: fontBackground
+          in: query
+          type: string
+          required: false
+          description: Background color behind the overlay text.
+        - name: json
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return a JSON metadata document instead of the binary image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cat-id
+      path: /cat/{id}
+      operations:
+      - name: getCatById
+        method: GET
+        description: CATAAS Get a Specific Cat Image by Id
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Catalog id of the cat document.
+        - name: json
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return a JSON metadata document instead of the binary image.
+        - name: html
+          in: query
+          type: boolean
+          required: false
+          description: When `true`, return an HTML page that embeds the image.
+        - name: type
+          in: query
+          type: string
+          required: false
+          description: Sized variant of the image.
+        - name: filter
+          in: query
+          type: string
+          required: false
+          description: Visual filter applied to the image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cat-id-says-text
+      path: /cat/{id}/says/{text}
+      operations:
+      - name: getCatByIdSays
+        method: GET
+        description: CATAAS Get a Specific Cat with Text Overlay
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Catalog id of the cat document.
+        - name: text
+          in: path
+          type: string
+          required: true
+          description: Text to overlay onto the image.
+        - name: fontSize
+          in: query
+          type: integer
+          required: false
+          description: Font size in pixels for `/says/` text overlays.
+        - name: fontColor
+          in: query
+          type: string
+          required: false
+          description: Font color name or hex value (e.g., `red`, `#ffffff`).
+        - name: fontBackground
+          in: query
+          type: string
+          required: false
+          description: Background color behind the overlay text.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: cataas-cats-rest
+    port: 8080
+    description: REST adapter for Cataas API — Cats. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/cat
+      name: v1-cat
+      description: REST surface for /v1/cat.
+      operations:
+      - method: GET
+        name: getRandomCat
+        description: CATAAS Get a Random Cat Image
+        call: cataas-cats.getRandomCat
+        with:
+          json: rest.json
+          html: rest.html
+          type: rest.type
+          width: rest.width
+          height: rest.height
+          fit: rest.fit
+          position: rest.position
+          filter: rest.filter
+          blur: rest.blur
+          brightness: rest.brightness
+          lightness: rest.lightness
+          saturation: rest.saturation
+          hue: rest.hue
+          r: rest.r
+          g: rest.g
+          b: rest.b
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cat/{tag}
+      name: v1-cat-tag
+      description: REST surface for /v1/cat/{tag}.
+      operations:
+      - method: GET
+        name: getRandomCatByTag
+        description: CATAAS Get a Random Cat Image by Tag
+        call: cataas-cats.getRandomCatByTag
+        with:
+          tag: rest.tag
+          json: rest.json
+          html: rest.html
+          type: rest.type
+          width: rest.width
+          height: rest.height
+          fit: rest.fit
+          position: rest.position
+          filter: rest.filter
+          blur: rest.blur
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cat/gif
+      name: v1-cat-gif
+      description: REST surface for /v1/cat/gif.
+      operations:
+      - method: GET
+        name: getRandomCatGif
+        description: CATAAS Get a Random Cat GIF
+        call: cataas-cats.getRandomCatGif
+        with:
+          json: rest.json
+          html: rest.html
+          width: rest.width
+          height: rest.height
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cat/says/{text}
+      name: v1-cat-says-text
+      description: REST surface for /v1/cat/says/{text}.
+      operations:
+      - method: GET
+        name: getRandomCatSays
+        description: CATAAS Get a Random Cat Image with Text Overlay
+        call: cataas-cats.getRandomCatSays
+        with:
+          text: rest.text
+          fontSize: rest.fontSize
+          fontColor: rest.fontColor
+          fontBackground: rest.fontBackground
+          json: rest.json
+          html: rest.html
+          type: rest.type
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cat/{tag}/says/{text}
+      name: v1-cat-tag-says-text
+      description: REST surface for /v1/cat/{tag}/says/{text}.
+      operations:
+      - method: GET
+        name: getRandomCatByTagSays
+        description: CATAAS Get a Random Tagged Cat with Text Overlay
+        call: cataas-cats.getRandomCatByTagSays
+        with:
+          tag: rest.tag
+          text: rest.text
+          fontSize: rest.fontSize
+          fontColor: rest.fontColor
+          fontBackground: rest.fontBackground
+          json: rest.json
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cat/{id}
+      name: v1-cat-id
+      description: REST surface for /v1/cat/{id}.
+      operations:
+      - method: GET
+        name: getCatById
+        description: CATAAS Get a Specific Cat Image by Id
+        call: cataas-cats.getCatById
+        with:
+          id: rest.id
+          json: rest.json
+          html: rest.html
+          type: rest.type
+          filter: rest.filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cat/{id}/says/{text}
+      name: v1-cat-id-says-text
+      description: REST surface for /v1/cat/{id}/says/{text}.
+      operations:
+      - method: GET
+        name: getCatByIdSays
+        description: CATAAS Get a Specific Cat with Text Overlay
+        call: cataas-cats.getCatByIdSays
+        with:
+          id: rest.id
+          text: rest.text
+          fontSize: rest.fontSize
+          fontColor: rest.fontColor
+          fontBackground: rest.fontBackground
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cataas-cats-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cataas API — Cats. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: getrandomcat
+      description: CATAAS Get a Random Cat Image
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getRandomCat
+      with:
+        json: tools.json
+        html: tools.html
+        type: tools.type
+        width: tools.width
+        height: tools.height
+        fit: tools.fit
+        position: tools.position
+        filter: tools.filter
+        blur: tools.blur
+        brightness: tools.brightness
+        lightness: tools.lightness
+        saturation: tools.saturation
+        hue: tools.hue
+        r: tools.r
+        g: tools.g
+        b: tools.b
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrandomcatbytag
+      description: CATAAS Get a Random Cat Image by Tag
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getRandomCatByTag
+      with:
+        tag: tools.tag
+        json: tools.json
+        html: tools.html
+        type: tools.type
+        width: tools.width
+        height: tools.height
+        fit: tools.fit
+        position: tools.position
+        filter: tools.filter
+        blur: tools.blur
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrandomcatgif
+      description: CATAAS Get a Random Cat GIF
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getRandomCatGif
+      with:
+        json: tools.json
+        html: tools.html
+        width: tools.width
+        height: tools.height
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrandomcatsays
+      description: CATAAS Get a Random Cat Image with Text Overlay
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getRandomCatSays
+      with:
+        text: tools.text
+        fontSize: tools.fontSize
+        fontColor: tools.fontColor
+        fontBackground: tools.fontBackground
+        json: tools.json
+        html: tools.html
+        type: tools.type
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrandomcatbytagsays
+      description: CATAAS Get a Random Tagged Cat with Text Overlay
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getRandomCatByTagSays
+      with:
+        tag: tools.tag
+        text: tools.text
+        fontSize: tools.fontSize
+        fontColor: tools.fontColor
+        fontBackground: tools.fontBackground
+        json: tools.json
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcatbyid
+      description: CATAAS Get a Specific Cat Image by Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getCatById
+      with:
+        id: tools.id
+        json: tools.json
+        html: tools.html
+        type: tools.type
+        filter: tools.filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcatbyidsays
+      description: CATAAS Get a Specific Cat with Text Overlay
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cataas-cats.getCatByIdSays
+      with:
+        id: tools.id
+        text: tools.text
+        fontSize: tools.fontSize
+        fontColor: tools.fontColor
+        fontBackground: tools.fontBackground
+      outputParameters:
+      - type: object
+        mapping: $.

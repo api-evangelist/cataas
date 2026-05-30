@@ -1,32 +1,157 @@
 aid: cataas
 name: Cataas
-description: "Cat as a service (cats pictures and gifs)"
+description: >-
+  Cataas (Cat as a Service) is a free, open-source REST API that returns
+  random cat images and GIFs with optional tags, filters, sizing, and text
+  overlays. The service is widely embedded in tutorials, demos, README files,
+  and chat applications as a friction-free image source. The canonical
+  implementation lives at github.com/cataas/cataas and runs at cataas.com.
 url: https://cataas.com/
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-30'
 x-source: public-apis/public-apis
-x-category: "Animals"
+x-category: Animals
+x-type: opensource
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
   - Animals
+  - Cats
+  - Images
+  - Open Source
   - Public APIs
 apis:
   - name: Cataas
-    description: "Cat as a service (cats pictures and gifs)"
+    description: >-
+      Random and tagged cat image retrieval with optional sizing, filtering,
+      and text overlay. Includes a JSON catalog API and admin/upload endpoints
+      for the canonical hosted instance.
     humanURL: https://cataas.com/
-    baseURL: https://cataas.com/
+    baseURL: https://cataas.com
     tags:
-      - Animals
+      - Cats
+      - Images
     properties:
       - type: Documentation
         url: https://cataas.com/
+      - type: OpenAPI
+        url: openapi/cataas-openapi-original.yml
+      - type: JSONSchema
+        url: json-schema/cat-schema.json
+      - type: JSONSchema
+        url: json-schema/count-response-schema.json
+      - type: JSONSchema
+        url: json-schema/upload-cat-request-schema.json
+      - type: JSONSchema
+        url: json-schema/edit-cat-request-schema.json
+      - type: JSONStructure
+        url: json-structure/cat-structure.json
+      - type: JSONStructure
+        url: json-structure/count-response-structure.json
+      - type: JSONStructure
+        url: json-structure/upload-cat-request-structure.json
+      - type: JSONStructure
+        url: json-structure/edit-cat-request-structure.json
+      - type: Example
+        url: examples/cat-example.json
+      - type: Example
+        url: examples/count-response-example.json
+      - type: Example
+        url: examples/upload-cat-request-example.json
+      - type: Example
+        url: examples/edit-cat-request-example.json
+      - type: NaftikoCapability
+        url: capabilities/cataas-cats.yaml
+      - type: NaftikoCapability
+        url: capabilities/cataas-catalog.yaml
+      - type: NaftikoCapability
+        url: capabilities/cataas-upload.yaml
+      - type: NaftikoCapability
+        url: capabilities/cataas-admin.yaml
+      - type: SDK
+        url: https://github.com/iArmanKarimi/Cataas-API-js
+        title: JavaScript / TypeScript Wrapper (community)
+      - type: SDK
+        url: https://github.com/iArmanKarimi/Cataas-API-go
+        title: Go Wrapper (community)
+      - type: SDK
+        url: https://github.com/chimpook/cataas-api-php
+        title: PHP Wrapper (community)
 common:
   - type: Website
     url: https://cataas.com/
+  - type: GitHubOrganization
+    url: https://github.com/cataas
+  - type: GitHubRepository
+    url: https://github.com/cataas/cataas
+    title: Canonical Cataas server (Node.js)
+  - type: GitHubRepository
+    url: https://github.com/cataas/discord-bot
+    title: Cataas Discord bot
+  - type: GitHubRepository
+    url: https://github.com/cataas/slack-command
+    title: Cataas Slack slash command
+  - type: GitHubRepository
+    url: https://github.com/cataas/image-editor
+    title: Cataas image editor library
+  - type: Tools
+    title: MCP Server (community via Pipeworx Gateway)
+    url: https://github.com/pipeworx-io/mcp-cataas
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
+  - type: SpectralRules
+    url: rules/cataas-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/cataas-vocabulary.yaml
+  - type: JSON-LD
+    url: json-ld/cataas-context.jsonld
+  - type: Features
+    data:
+      - name: Random Cat Image
+        description: GET /cat returns a random cat image (JPEG, PNG, or GIF).
+      - name: Tagged Cat Retrieval
+        description: GET /cat/{tag} returns a random cat matching one or more comma-separated tags.
+      - name: Animated GIFs
+        description: GET /cat/gif returns a random animated cat.
+      - name: Text Overlay
+        description: GET /cat/says/{text} renders user-supplied text on top of a random cat with configurable font size, color, and background.
+      - name: Image Filters
+        description: filter=blur|mono|negate|custom with per-channel and per-property tuning (brightness, hue, saturation, RGB).
+      - name: Sizing and Cropping
+        description: type, width, height, fit, and position query parameters resize and crop the returned image.
+      - name: JSON Catalog API
+        description: /api/cats, /api/tags, /api/count expose the catalog programmatically.
+      - name: Content Negotiation
+        description: json=true returns a metadata document instead of binary; html=true returns an embedding wrapper page.
+      - name: Free and Unauthenticated
+        description: All read endpoints are public and require no API key.
+  - type: UseCases
+    data:
+      - name: Tutorials and Demos
+        description: Embed live cat images in API tutorials, learn-to-code lessons, and conference demos.
+      - name: README Decoration
+        description: Decorate open-source READMEs and personal sites with rotating cat imagery.
+      - name: Chat Bots and Slash Commands
+        description: Slack, Discord, and Teams bots fetch random cats on demand via /cat or /cat/says.
+      - name: Mocking Image-Heavy APIs
+        description: Stand in for a real image-CDN-backed API while prototyping front-end layouts.
+      - name: Image Pipeline Testing
+        description: Exercise resize, format-conversion, and filtering pipelines with predictable image input.
+  - type: Integrations
+    data:
+      - name: Slack
+        description: Official slack-command repo wires /cat into Slack workspaces.
+      - name: Discord
+        description: Official discord-bot repo provides a Cataas Discord integration.
+      - name: Pipeworx MCP Gateway
+        description: Community MCP server (pipeworx-io/mcp-cataas) wraps the API for use by Claude and other MCP clients.
+      - name: Public APIs Catalog
+        description: Listed in the public-apis/public-apis Animals category.
+  - type: Solutions
+    data:
+      - name: Self-Hosted Catalog
+        description: Run your own Cataas instance from cataas/cataas (Node.js + MongoDB + sharp) to power internal demos or branded image services.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

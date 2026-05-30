@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cataas/refs/heads/main/json-schema/upload-cat-request-schema.json",
+  "title": "UploadCatRequest",
+  "description": "Multipart upload payload for a new cat image.",
+  "type": "object",
+  "properties": {
+    "file": {
+      "type": "string",
+      "format": "binary",
+      "description": "The cat image file (JPEG, PNG, or GIF)."
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated list of tags to apply to the new cat.",
+      "example": "cute,orange"
+    }
+  },
+  "required": [
+    "file"
+  ]
+}

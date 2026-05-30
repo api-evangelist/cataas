@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cataas/refs/heads/main/json-structure/count-response-structure.json",
+  "name": "CountResponse",
+  "description": "Total count of cats in the catalog.",
+  "type": "object",
+  "required": [
+    "count"
+  ],
+  "properties": {
+    "count": {
+      "type": "int32",
+      "description": "Total number of cats in the catalog.",
+      "example": 9384
+    }
+  }
+}

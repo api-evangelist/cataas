@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cataas/refs/heads/main/json-schema/cat-schema.json",
+  "title": "Cat",
+  "description": "A cat catalog document.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "MongoDB document id of the cat.",
+      "example": "595f280b557291a9750ebf66"
+    },
+    "id": {
+      "type": "string",
+      "description": "Public id of the cat (mirror of `_id`).",
+      "example": "595f280b557291a9750ebf66"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags attached to this cat.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "cute",
+        "orange"
+      ]
+    },
+    "mimetype": {
+      "type": "string",
+      "description": "MIME type of the cat image file.",
+      "example": "image/jpeg"
+    },
+    "size": {
+      "type": "integer",
+      "description": "Size of the cat image file in bytes.",
+      "example": 18234
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the cat document was created.",
+      "example": "2026-05-29T14:30:00Z"
+    },
+    "edited_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the cat document was last edited.",
+      "example": "2026-05-29T15:00:00Z"
+    },
+    "validated": {
+      "type": "boolean",
+      "description": "Whether this cat has been moderated and approved for the public catalog.",
+      "example": true
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Direct URL to the cat image.",
+      "example": "https://cataas.com/cat/595f280b557291a9750ebf66"
+    }
+  },
+  "required": [
+    "id",
+    "tags"
+  ]
+}

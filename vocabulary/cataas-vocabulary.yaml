@@ -1,0 +1,267 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Cataas"
+  description: >-
+    Unified taxonomy for the Cataas (Cat as a Service) open-source REST API.
+    Maps the operational dimension (OpenAPI endpoints) to the capability
+    dimension (Naftiko per-tag capability files exposing REST + MCP adapters).
+  created: "2026-05-30"
+  modified: "2026-05-30"
+
+# ── OPERATIONAL DIMENSION (from OpenAPI) ──────────────────────────────
+operational:
+  apis:
+    - name: "Cataas API"
+      namespace: "cataas"
+      version: "1.0.0"
+      baseUrl: "https://cataas.com"
+      status: active
+
+  resources:
+    - name: cat
+      api: cataas
+      description: A cat catalog document containing image bytes, mimetype, tags, and metadata.
+      actions: [get, list, getByTag, getByGif, getBySays, getById, upload, validate, edit, delete]
+    - name: tag
+      api: cataas
+      description: A label attached to a cat used for filtering.
+      actions: [list]
+    - name: count
+      api: cataas
+      description: Total number of cats in the catalog.
+      actions: [get]
+
+  actions:
+    - name: get
+      method: GET
+      pattern: read
+      description: Retrieve a random or specific cat image.
+    - name: list
+      method: GET
+      pattern: query
+      description: List cats or tags from the catalog.
+    - name: upload
+      method: POST
+      pattern: write
+      description: Submit a new cat image to the catalog.
+    - name: validate
+      method: PUT
+      pattern: write
+      description: Mark a cat as moderated/approved.
+    - name: edit
+      method: PATCH
+      pattern: write
+      description: Update tags on an existing cat.
+    - name: delete
+      method: DELETE
+      pattern: destructive
+      description: Remove a cat document and its image file.
+
+  schemas:
+    core:
+      - name: Cat
+        description: Cat catalog document with id, tags, mimetype, timestamps.
+      - name: CountResponse
+        description: Total count of cats wrapper.
+    requests:
+      - name: UploadCatRequest
+        description: Multipart upload payload for a new cat image.
+      - name: EditCatRequest
+        description: Patch payload for editing tags on a cat.
+
+  parameters:
+    pagination:
+      - skip
+      - limit
+    identifiers:
+      - id
+      - tag
+    filters:
+      - tags
+      - filter
+    media:
+      - type
+      - width
+      - height
+      - fit
+      - position
+    filterTuning:
+      - blur
+      - brightness
+      - lightness
+      - saturation
+      - hue
+      - r
+      - g
+      - b
+    overlay:
+      - text
+      - fontSize
+      - fontColor
+      - fontBackground
+    negotiation:
+      - json
+      - html
+
+  enums:
+    sizes:
+      - xsmall
+      - small
+      - medium
+      - square
+      - sq
+    filters:
+      - blur
+      - mono
+      - negate
+      - custom
+    fit:
+      - cover
+      - contain
+      - fill
+      - inside
+      - outside
+    position:
+      - top
+      - "right top"
+      - right
+      - "right bottom"
+      - bottom
+      - "left bottom"
+      - left
+      - "left top"
+      - center
+      - centre
+      - entropy
+      - attention
+
+  authentication:
+    - scheme: none
+      description: Public endpoints (`/cat`, `/cat/{tag}`, `/cat/says/{text}`, `/api/cats`, `/api/tags`, `/api/count`) require no authentication.
+    - scheme: bearer
+      description: Admin operations (`/admin/*`) require an admin bearer token (`CATAAS_ADMIN_TOKEN`).
+      appliesTo: [adminListCats, adminValidateCat, adminEditCat, adminDeleteCat, uploadCat]
+
+# ── CAPABILITY DIMENSION (from Naftiko) ───────────────────────────────
+capability:
+  workflows:
+    - name: "Cataas — Cats"
+      file: capabilities/cataas-cats.yaml
+      description: Random and tagged cat image retrieval with optional text overlay and styling.
+      apis: [cataas]
+      toolCount: 7
+      personas: [Developer, Hobbyist]
+      domains: [Media]
+    - name: "Cataas — Catalog"
+      file: capabilities/cataas-catalog.yaml
+      description: Programmatic browse of cats, tags, and counts.
+      apis: [cataas]
+      toolCount: 3
+      personas: [Developer, DataScientist]
+      domains: [Catalog]
+    - name: "Cataas — Upload"
+      file: capabilities/cataas-upload.yaml
+      description: Submit a new cat image to the catalog.
+      apis: [cataas]
+      toolCount: 1
+      personas: [Contributor]
+      domains: [Media]
+    - name: "Cataas — Admin"
+      file: capabilities/cataas-admin.yaml
+      description: Moderate, edit, and delete catalog entries.
+      apis: [cataas]
+      toolCount: 4
+      personas: [Moderator]
+      domains: [Moderation]
+
+  personas:
+    - id: developer
+      name: Developer
+      description: Embeds cat images in product UIs, demos, README files, and chat bots.
+      workflows: ["Cataas — Cats", "Cataas — Catalog"]
+    - id: hobbyist
+      name: Hobbyist
+      description: Casual user fetching random cats for fun or messaging.
+      workflows: ["Cataas — Cats"]
+    - id: data-scientist
+      name: DataScientist
+      description: Browses the catalog programmatically to harvest tagged image sets.
+      workflows: ["Cataas — Catalog"]
+    - id: contributor
+      name: Contributor
+      description: Submits new cat images for inclusion in the public catalog.
+      workflows: ["Cataas — Upload"]
+    - id: moderator
+      name: Moderator
+      description: Reviews submissions, edits tags, and removes invalid catalog entries.
+      workflows: ["Cataas — Admin"]
+
+  domains:
+    - name: Media
+      description: Image retrieval and submission surface.
+      resources: [cat]
+      workflows: ["Cataas — Cats", "Cataas — Upload"]
+    - name: Catalog
+      description: Browsable inventory and tag system.
+      resources: [cat, tag, count]
+      workflows: ["Cataas — Catalog"]
+    - name: Moderation
+      description: Curation of cat catalog content.
+      resources: [cat]
+      workflows: ["Cataas — Admin"]
+
+  namespaces:
+    - consumed: cataas-cats
+      rest: cataas-cats-rest
+      mcp: cataas-cats-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumed: cataas-catalog
+      rest: cataas-catalog-rest
+      mcp: cataas-catalog-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumed: cataas-upload
+      rest: cataas-upload-rest
+      mcp: cataas-upload-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumed: cataas-admin
+      rest: cataas-admin-rest
+      mcp: cataas-admin-mcp
+      restPort: 8080
+      mcpPort: 9090
+
+  binds:
+    - key: CATAAS_ADMIN_TOKEN
+      description: Admin bearer token for moderation endpoints.
+      workflows: ["Cataas — Admin", "Cataas — Upload"]
+
+# ── CROSS-REFERENCE ────────────────────────────────────────────────────
+crossReference:
+  - resource: cat
+    operations:
+      - getRandomCat
+      - getRandomCatByTag
+      - getRandomCatGif
+      - getRandomCatSays
+      - getRandomCatByTagSays
+      - getCatById
+      - getCatByIdSays
+      - listCats
+      - uploadCat
+      - adminListCats
+      - adminValidateCat
+      - adminEditCat
+      - adminDeleteCat
+    workflows: ["Cataas — Cats", "Cataas — Catalog", "Cataas — Upload", "Cataas — Admin"]
+    personas: [Developer, Hobbyist, DataScientist, Contributor, Moderator]
+  - resource: tag
+    operations: [listTags]
+    workflows: ["Cataas — Catalog"]
+    personas: [Developer, DataScientist]
+  - resource: count
+    operations: [getCatCount]
+    workflows: ["Cataas — Catalog"]
+    personas: [Developer, DataScientist]

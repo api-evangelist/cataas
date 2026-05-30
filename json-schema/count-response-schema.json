@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/cataas/refs/heads/main/json-schema/count-response-schema.json",
+  "title": "CountResponse",
+  "description": "Total count of cats in the catalog.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total number of cats in the catalog.",
+      "example": 9384
+    }
+  },
+  "required": [
+    "count"
+  ]
+}
