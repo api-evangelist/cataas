@@ -53,29 +53,29 @@ apis:
         url: json-structure/upload-cat-request-structure.json
       - type: JSONStructure
         url: json-structure/edit-cat-request-structure.json
-      - type: Example
+      - type: Examples
         url: examples/cat-example.json
-      - type: Example
+      - type: Examples
         url: examples/count-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/upload-cat-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/edit-cat-request-example.json
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/cataas-cats.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/cataas-catalog.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/cataas-upload.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/cataas-admin.yaml
-      - type: SDK
+      - type: SDKs
         url: https://github.com/iArmanKarimi/Cataas-API-js
         title: JavaScript / TypeScript Wrapper (community)
-      - type: SDK
+      - type: SDKs
         url: https://github.com/iArmanKarimi/Cataas-API-go
         title: Go Wrapper (community)
-      - type: SDK
+      - type: SDKs
         url: https://github.com/chimpook/cataas-api-php
         title: PHP Wrapper (community)
 common:
@@ -104,7 +104,7 @@ common:
     url: rules/cataas-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/cataas-vocabulary.yaml
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/cataas-context.jsonld
   - type: Features
     data:
