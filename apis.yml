@@ -79,6 +79,10 @@ apis:
         url: https://github.com/chimpook/cataas-api-php
         title: PHP Wrapper (community)
 common:
+  - type: DomainSecurity
+    url: security/cataas-domain-security.yml
+  - type: Authentication
+    url: authentication/cataas-authentication.yml
   - type: Website
     url: https://cataas.com/
   - type: GitHubOrganization
