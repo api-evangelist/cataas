@@ -79,6 +79,8 @@ apis:
         url: https://github.com/chimpook/cataas-api-php
         title: PHP Wrapper (community)
 common:
+  - type: AgenticAccess
+    url: agentic-access/cataas-agentic-access.yml
   - type: DomainSecurity
     url: security/cataas-domain-security.yml
   - type: Authentication
