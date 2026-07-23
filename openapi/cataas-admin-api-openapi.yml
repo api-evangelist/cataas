@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: Cataas Admin API
+  version: 1.0.0
+  description: CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.
+  contact:
+    name: CATAAS Project
+    url: https://github.com/cataas/cataas
+  license:
+    name: Open Source (no SPDX declared)
+    url: https://github.com/cataas/cataas
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://cataas.com
+  description: Public production API
+tags:
+- name: Admin
+  description: Administrative operations on the cat catalog (admin token required)
+paths:
+  /admin/cats:
+    get:
+      operationId: adminListCats
+      summary: CATAAS Administrative List of Cats
+      description: Returns cats for moderation, including unvalidated entries.
+      tags:
+      - Admin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: skip
+        in: query
+        required: false
+        description: Number of records to skip for pagination.
+        schema:
+          type: integer
+          minimum: 0
+        example: 0
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        example: 50
+      responses:
+        '200':
+          description: Array of cat documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cat'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /admin/cats/{id}:
+    put:
+      operationId: adminValidateCat
+      summary: CATAAS Validate a Cat Record
+      description: 'Marks the cat document identified by `id` as `validated: true`.'
+      tags:
+      - Admin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Catalog id of the cat document.
+        schema:
+          type: string
+        example: 595f280b557291a9750ebf66
+      responses:
+        '200':
+          description: The updated cat document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: adminEditCat
+      summary: CATAAS Edit a Cat Record
+      description: Updates the tags on the cat document identified by `id`.
+      tags:
+      - Admin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Catalog id of the cat document.
+        schema:
+          type: string
+        example: 595f280b557291a9750ebf66
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditCatRequest'
+            examples:
+              AdminEditCatRequestExample:
+                summary: Default adminEditCat request
+                x-microcks-default: true
+                value:
+                  tags: cute,orange,sleepy
+      responses:
+        '200':
+          description: The updated cat document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: adminDeleteCat
+      summary: CATAAS Delete a Cat Record
+      description: Removes the cat document and its image file from disk.
+      tags:
+      - Admin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Catalog id of the cat document.
+        schema:
+          type: string
+        example: 595f280b557291a9750ebf66
+      responses:
+        '204':
+          description: Cat deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    EditCatRequest:
+      title: EditCatRequest
+      type: object
+      description: Payload for editing a cat document.
+      required:
+      - tags
+      properties:
+        tags:
+          type: string
+          description: Comma-separated list of tags to set on the cat.
+          example: cute,orange,sleepy
+    Cat:
+      title: Cat
+      type: object
+      description: A cat catalog document.
+      required:
+      - id
+      - tags
+      properties:
+        _id:
+          type: string
+          description: MongoDB document id of the cat.
+          example: 595f280b557291a9750ebf66
+        id:
+          type: string
+          description: Public id of the cat (mirror of `_id`).
+          example: 595f280b557291a9750ebf66
+        tags:
+          type: array
+          description: Tags attached to this cat.
+          items:
+            type: string
+          example:
+          - cute
+          - orange
+        mimetype:
+          type: string
+          description: MIME type of the cat image file.
+          example: image/jpeg
+        size:
+          type: integer
+          description: Size of the cat image file in bytes.
+          example: 18234
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the cat document was created.
+          example: '2026-05-29T14:30:00Z'
+        edited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the cat document was last edited.
+          example: '2026-05-29T15:00:00Z'
+        validated:
+          type: boolean
+          description: Whether this cat has been moderated and approved for the public catalog.
+          example: true
+        url:
+          type: string
+          format: uri
+          description: Direct URL to the cat image.
+          example: https://cataas.com/cat/595f280b557291a9750ebf66
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Generic error response.
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
+  responses:
+    NotFound:
+      description: Requested cat or resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default 404 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: NotFoundError
+                  message: Cat not found
+    Unauthorized:
+      description: Admin token missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default 401 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: UnauthorizedError
+                  message: Missing or invalid admin token
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Admin-only bearer token for moderation and catalog management.

@@ -1,0 +1,579 @@
+openapi: 3.0.3
+info:
+  title: Cataas Admin Cats API
+  version: 1.0.0
+  description: CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.
+  contact:
+    name: CATAAS Project
+    url: https://github.com/cataas/cataas
+  license:
+    name: Open Source (no SPDX declared)
+    url: https://github.com/cataas/cataas
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://cataas.com
+  description: Public production API
+tags:
+- name: Cats
+  description: Random and tagged cat image retrieval
+paths:
+  /cat:
+    get:
+      operationId: getRandomCat
+      summary: CATAAS Get a Random Cat Image
+      description: Returns a random cat image. By default the response is the binary image payload; pass `json=true` to receive a metadata JSON document with an `_id`, `tags`, `mimetype`, and a `url` you can embed.
+      tags:
+      - Cats
+      parameters:
+      - $ref: '#/components/parameters/json'
+      - $ref: '#/components/parameters/html'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/width'
+      - $ref: '#/components/parameters/height'
+      - $ref: '#/components/parameters/fit'
+      - $ref: '#/components/parameters/position'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/blur'
+      - $ref: '#/components/parameters/brightness'
+      - $ref: '#/components/parameters/lightness'
+      - $ref: '#/components/parameters/saturation'
+      - $ref: '#/components/parameters/hue'
+      - $ref: '#/components/parameters/red'
+      - $ref: '#/components/parameters/green'
+      - $ref: '#/components/parameters/blue'
+      responses:
+        '200':
+          description: A random cat image (binary) or metadata document
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cat/{tag}:
+    get:
+      operationId: getRandomCatByTag
+      summary: CATAAS Get a Random Cat Image by Tag
+      description: Returns a random cat image that carries the provided tag (or any of the comma-separated tags supplied). Supports the same sizing, filter, and JSON/HTML response negotiation as `/cat`.
+      tags:
+      - Cats
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        description: 'One tag or several comma-separated tags. Example: `cute` or `cute,orange`.'
+        schema:
+          type: string
+        example: cute
+      - $ref: '#/components/parameters/json'
+      - $ref: '#/components/parameters/html'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/width'
+      - $ref: '#/components/parameters/height'
+      - $ref: '#/components/parameters/fit'
+      - $ref: '#/components/parameters/position'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/blur'
+      responses:
+        '200':
+          description: A random tagged cat image
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cat/gif:
+    get:
+      operationId: getRandomCatGif
+      summary: CATAAS Get a Random Cat GIF
+      description: Returns a random animated cat (image/gif). Same query parameters as `/cat` may be used for sizing and JSON negotiation. Filters do not apply to GIFs.
+      tags:
+      - Cats
+      parameters:
+      - $ref: '#/components/parameters/json'
+      - $ref: '#/components/parameters/html'
+      - $ref: '#/components/parameters/width'
+      - $ref: '#/components/parameters/height'
+      responses:
+        '200':
+          description: A random cat GIF
+          content:
+            image/gif:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cat/says/{text}:
+    get:
+      operationId: getRandomCatSays
+      summary: CATAAS Get a Random Cat Image with Text Overlay
+      description: Returns a random cat image with the supplied text rendered on top. Use `fontSize`, `fontColor`, and `fontBackground` to style the overlay. URL-encode any special characters in `text`.
+      tags:
+      - Cats
+      parameters:
+      - name: text
+        in: path
+        required: true
+        description: Text to overlay onto the image.
+        schema:
+          type: string
+        example: hello world
+      - $ref: '#/components/parameters/fontSize'
+      - $ref: '#/components/parameters/fontColor'
+      - $ref: '#/components/parameters/fontBackground'
+      - $ref: '#/components/parameters/json'
+      - $ref: '#/components/parameters/html'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: A random cat image with overlay
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cat/{tag}/says/{text}:
+    get:
+      operationId: getRandomCatByTagSays
+      summary: CATAAS Get a Random Tagged Cat with Text Overlay
+      description: Returns a random cat image that carries `tag` and renders `text` on top. Combines the behavior of `/cat/{tag}` and `/cat/says/{text}`.
+      tags:
+      - Cats
+      parameters:
+      - name: tag
+        in: path
+        required: true
+        description: One or more comma-separated tags.
+        schema:
+          type: string
+        example: cute
+      - name: text
+        in: path
+        required: true
+        description: Text to overlay onto the image.
+        schema:
+          type: string
+        example: hello world
+      - $ref: '#/components/parameters/fontSize'
+      - $ref: '#/components/parameters/fontColor'
+      - $ref: '#/components/parameters/fontBackground'
+      - $ref: '#/components/parameters/json'
+      responses:
+        '200':
+          description: A random tagged cat image with overlay
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cat/{id}:
+    get:
+      operationId: getCatById
+      summary: CATAAS Get a Specific Cat Image by Id
+      description: Returns the cat image identified by `id`. The id is the MongoDB document id surfaced in catalog (`/api/cats`) responses.
+      tags:
+      - Cats
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Catalog id of the cat document.
+        schema:
+          type: string
+        example: 595f280b557291a9750ebf66
+      - $ref: '#/components/parameters/json'
+      - $ref: '#/components/parameters/html'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: The requested cat image
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /cat/{id}/says/{text}:
+    get:
+      operationId: getCatByIdSays
+      summary: CATAAS Get a Specific Cat with Text Overlay
+      description: Returns the cat image identified by `id` with `text` rendered on top.
+      tags:
+      - Cats
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Catalog id of the cat document.
+        schema:
+          type: string
+        example: 595f280b557291a9750ebf66
+      - name: text
+        in: path
+        required: true
+        description: Text to overlay onto the image.
+        schema:
+          type: string
+        example: hello world
+      - $ref: '#/components/parameters/fontSize'
+      - $ref: '#/components/parameters/fontColor'
+      - $ref: '#/components/parameters/fontBackground'
+      responses:
+        '200':
+          description: The cat image with overlay
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    fit:
+      name: fit
+      in: query
+      required: false
+      description: Resize strategy when both width and height are provided.
+      schema:
+        type: string
+        enum:
+        - cover
+        - contain
+        - fill
+        - inside
+        - outside
+      example: cover
+    red:
+      name: r
+      in: query
+      required: false
+      description: Red channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 200
+    saturation:
+      name: saturation
+      in: query
+      required: false
+      description: Saturation multiplier for `filter=custom`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 1.5
+    lightness:
+      name: lightness
+      in: query
+      required: false
+      description: Lightness offset for `filter=custom`.
+      schema:
+        type: number
+        minimum: -100
+        maximum: 100
+      example: 0
+    type:
+      name: type
+      in: query
+      required: false
+      description: Sized variant of the image.
+      schema:
+        type: string
+        enum:
+        - xsmall
+        - small
+        - medium
+        - square
+        - sq
+      example: small
+    hue:
+      name: hue
+      in: query
+      required: false
+      description: Hue rotation in degrees for `filter=custom`.
+      schema:
+        type: integer
+        minimum: -360
+        maximum: 360
+      example: 60
+    width:
+      name: width
+      in: query
+      required: false
+      description: Resize the image to the specified width in pixels (max 1000).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+      example: 400
+    height:
+      name: height
+      in: query
+      required: false
+      description: Resize the image to the specified height in pixels (max 1000).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+      example: 400
+    json:
+      name: json
+      in: query
+      required: false
+      description: When `true`, return a JSON metadata document instead of the binary image.
+      schema:
+        type: boolean
+      example: true
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: Visual filter applied to the image.
+      schema:
+        type: string
+        enum:
+        - blur
+        - mono
+        - negate
+        - custom
+      example: mono
+    green:
+      name: g
+      in: query
+      required: false
+      description: Green channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 100
+    fontBackground:
+      name: fontBackground
+      in: query
+      required: false
+      description: Background color behind the overlay text.
+      schema:
+        type: string
+      example: black
+    fontSize:
+      name: fontSize
+      in: query
+      required: false
+      description: Font size in pixels for `/says/` text overlays.
+      schema:
+        type: integer
+        minimum: 8
+        maximum: 200
+      example: 50
+    fontColor:
+      name: fontColor
+      in: query
+      required: false
+      description: Font color name or hex value (e.g., `red`, `#ffffff`).
+      schema:
+        type: string
+      example: white
+    blur:
+      name: blur
+      in: query
+      required: false
+      description: Blur radius when `filter=blur`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 5
+    brightness:
+      name: brightness
+      in: query
+      required: false
+      description: Brightness multiplier for `filter=custom`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 1.2
+    html:
+      name: html
+      in: query
+      required: false
+      description: When `true`, return an HTML page that embeds the image.
+      schema:
+        type: boolean
+      example: false
+    position:
+      name: position
+      in: query
+      required: false
+      description: Position of the cropped image when `fit=cover` or `fit=contain`.
+      schema:
+        type: string
+        enum:
+        - top
+        - right top
+        - right
+        - right bottom
+        - bottom
+        - left bottom
+        - left
+        - left top
+        - center
+        - centre
+        - entropy
+        - attention
+      example: center
+    blue:
+      name: b
+      in: query
+      required: false
+      description: Blue channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 50
+  responses:
+    NotFound:
+      description: Requested cat or resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default 404 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: NotFoundError
+                  message: Cat not found
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Generic error response.
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
+    Cat:
+      title: Cat
+      type: object
+      description: A cat catalog document.
+      required:
+      - id
+      - tags
+      properties:
+        _id:
+          type: string
+          description: MongoDB document id of the cat.
+          example: 595f280b557291a9750ebf66
+        id:
+          type: string
+          description: Public id of the cat (mirror of `_id`).
+          example: 595f280b557291a9750ebf66
+        tags:
+          type: array
+          description: Tags attached to this cat.
+          items:
+            type: string
+          example:
+          - cute
+          - orange
+        mimetype:
+          type: string
+          description: MIME type of the cat image file.
+          example: image/jpeg
+        size:
+          type: integer
+          description: Size of the cat image file in bytes.
+          example: 18234
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the cat document was created.
+          example: '2026-05-29T14:30:00Z'
+        edited_at:
+          type: string
+          format: date-time
+          description: Timestamp when the cat document was last edited.
+          example: '2026-05-29T15:00:00Z'
+        validated:
+          type: boolean
+          description: Whether this cat has been moderated and approved for the public catalog.
+          example: true
+        url:
+          type: string
+          format: uri
+          description: Direct URL to the cat image.
+          example: https://cataas.com/cat/595f280b557291a9750ebf66
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Admin-only bearer token for moderation and catalog management.
