@@ -1,4 +1,17 @@
 aid: cataas
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cataas.png
 name: Cataas
 description: >-
   Cataas (Cat as a Service) is a free, open-source REST API that returns
@@ -22,62 +35,206 @@ tags:
   - Open Source
   - Public APIs
 apis:
-  - name: Cataas
-    description: >-
-      Random and tagged cat image retrieval with optional sizing, filtering,
-      and text overlay. Includes a JSON catalog API and admin/upload endpoints
-      for the canonical hosted instance.
-    humanURL: https://cataas.com/
-    baseURL: https://cataas.com
-    tags:
-      - Cats
-      - Images
-    properties:
-      - type: Documentation
-        url: https://cataas.com/
-      - type: OpenAPI
-        url: openapi/cataas-openapi-original.yml
-      - type: JSONSchema
-        url: json-schema/cat-schema.json
-      - type: JSONSchema
-        url: json-schema/count-response-schema.json
-      - type: JSONSchema
-        url: json-schema/upload-cat-request-schema.json
-      - type: JSONSchema
-        url: json-schema/edit-cat-request-schema.json
-      - type: JSONStructure
-        url: json-structure/cat-structure.json
-      - type: JSONStructure
-        url: json-structure/count-response-structure.json
-      - type: JSONStructure
-        url: json-structure/upload-cat-request-structure.json
-      - type: JSONStructure
-        url: json-structure/edit-cat-request-structure.json
-      - type: Examples
-        url: examples/cat-example.json
-      - type: Examples
-        url: examples/count-response-example.json
-      - type: Examples
-        url: examples/upload-cat-request-example.json
-      - type: Examples
-        url: examples/edit-cat-request-example.json
-      - type: X-NaftikoCapability
-        url: capabilities/cataas-cats.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/cataas-catalog.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/cataas-upload.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/cataas-admin.yaml
-      - type: SDKs
-        url: https://github.com/iArmanKarimi/Cataas-API-js
-        title: JavaScript / TypeScript Wrapper (community)
-      - type: SDKs
-        url: https://github.com/iArmanKarimi/Cataas-API-go
-        title: Go Wrapper (community)
-      - type: SDKs
-        url: https://github.com/chimpook/cataas-api-php
-        title: PHP Wrapper (community)
+- aid: cataas:cataas-admin-api
+  name: Cataas Admin API
+  description: Administrative operations on the cat catalog (admin token required)
+  humanURL: https://cataas.com/
+  baseURL: https://cataas.com
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/cataas-admin-api-openapi.yml
+  - type: Documentation
+    url: https://cataas.com/
+  - type: JSONSchema
+    url: json-schema/cat-schema.json
+  - type: JSONSchema
+    url: json-schema/count-response-schema.json
+  - type: JSONSchema
+    url: json-schema/upload-cat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/edit-cat-request-schema.json
+  - type: JSONStructure
+    url: json-structure/cat-structure.json
+  - type: JSONStructure
+    url: json-structure/count-response-structure.json
+  - type: JSONStructure
+    url: json-structure/upload-cat-request-structure.json
+  - type: JSONStructure
+    url: json-structure/edit-cat-request-structure.json
+  - type: Examples
+    url: examples/cat-example.json
+  - type: Examples
+    url: examples/count-response-example.json
+  - type: Examples
+    url: examples/upload-cat-request-example.json
+  - type: Examples
+    url: examples/edit-cat-request-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-cats.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-catalog.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-upload.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-admin.yaml
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-js
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-go
+  - type: SDKs
+    url: https://github.com/chimpook/cataas-api-php
+- aid: cataas:cataas-catalog-api
+  name: Cataas Catalog API
+  description: Browse cats, tags, and stats programmatically (JSON)
+  humanURL: https://cataas.com/
+  baseURL: https://cataas.com
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/cataas-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://cataas.com/
+  - type: JSONSchema
+    url: json-schema/cat-schema.json
+  - type: JSONSchema
+    url: json-schema/count-response-schema.json
+  - type: JSONSchema
+    url: json-schema/upload-cat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/edit-cat-request-schema.json
+  - type: JSONStructure
+    url: json-structure/cat-structure.json
+  - type: JSONStructure
+    url: json-structure/count-response-structure.json
+  - type: JSONStructure
+    url: json-structure/upload-cat-request-structure.json
+  - type: JSONStructure
+    url: json-structure/edit-cat-request-structure.json
+  - type: Examples
+    url: examples/cat-example.json
+  - type: Examples
+    url: examples/count-response-example.json
+  - type: Examples
+    url: examples/upload-cat-request-example.json
+  - type: Examples
+    url: examples/edit-cat-request-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-cats.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-catalog.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-upload.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-admin.yaml
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-js
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-go
+  - type: SDKs
+    url: https://github.com/chimpook/cataas-api-php
+- aid: cataas:cataas-cats-api
+  name: Cataas Cats API
+  description: Random and tagged cat image retrieval
+  humanURL: https://cataas.com/
+  baseURL: https://cataas.com
+  tags:
+  - Cats
+  properties:
+  - type: OpenAPI
+    url: openapi/cataas-cats-api-openapi.yml
+  - type: Documentation
+    url: https://cataas.com/
+  - type: JSONSchema
+    url: json-schema/cat-schema.json
+  - type: JSONSchema
+    url: json-schema/count-response-schema.json
+  - type: JSONSchema
+    url: json-schema/upload-cat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/edit-cat-request-schema.json
+  - type: JSONStructure
+    url: json-structure/cat-structure.json
+  - type: JSONStructure
+    url: json-structure/count-response-structure.json
+  - type: JSONStructure
+    url: json-structure/upload-cat-request-structure.json
+  - type: JSONStructure
+    url: json-structure/edit-cat-request-structure.json
+  - type: Examples
+    url: examples/cat-example.json
+  - type: Examples
+    url: examples/count-response-example.json
+  - type: Examples
+    url: examples/upload-cat-request-example.json
+  - type: Examples
+    url: examples/edit-cat-request-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-cats.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-catalog.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-upload.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-admin.yaml
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-js
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-go
+  - type: SDKs
+    url: https://github.com/chimpook/cataas-api-php
+- aid: cataas:cataas-upload-api
+  name: Cataas Upload API
+  description: Submit a cat image (rate-limited / moderated)
+  humanURL: https://cataas.com/
+  baseURL: https://cataas.com
+  tags:
+  - Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/cataas-upload-api-openapi.yml
+  - type: Documentation
+    url: https://cataas.com/
+  - type: JSONSchema
+    url: json-schema/cat-schema.json
+  - type: JSONSchema
+    url: json-schema/count-response-schema.json
+  - type: JSONSchema
+    url: json-schema/upload-cat-request-schema.json
+  - type: JSONSchema
+    url: json-schema/edit-cat-request-schema.json
+  - type: JSONStructure
+    url: json-structure/cat-structure.json
+  - type: JSONStructure
+    url: json-structure/count-response-structure.json
+  - type: JSONStructure
+    url: json-structure/upload-cat-request-structure.json
+  - type: JSONStructure
+    url: json-structure/edit-cat-request-structure.json
+  - type: Examples
+    url: examples/cat-example.json
+  - type: Examples
+    url: examples/count-response-example.json
+  - type: Examples
+    url: examples/upload-cat-request-example.json
+  - type: Examples
+    url: examples/edit-cat-request-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-cats.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-catalog.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-upload.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/cataas-admin.yaml
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-js
+  - type: SDKs
+    url: https://github.com/iArmanKarimi/Cataas-API-go
+  - type: SDKs
+    url: https://github.com/chimpook/cataas-api-php
 common:
   - type: AgenticAccess
     url: agentic-access/cataas-agentic-access.yml
