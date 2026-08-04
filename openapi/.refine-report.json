@@ -1,0 +1,20 @@
+{
+  "provider": "cataas",
+  "sources": [
+    "cataas-admin-api-openapi.yml",
+    "cataas-catalog-api-openapi.yml",
+    "cataas-cats-api-openapi.yml",
+    "cataas-upload-api-openapi.yml"
+  ],
+  "outputs": [
+    "cataas-admin-api-openapi.yml",
+    "cataas-catalog-api-openapi.yml",
+    "cataas-cats-api-openapi.yml",
+    "cataas-upload-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
