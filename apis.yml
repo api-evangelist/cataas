@@ -71,14 +71,6 @@ apis:
     url: examples/upload-cat-request-example.json
   - type: Examples
     url: examples/edit-cat-request-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-cats.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-catalog.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-upload.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-admin.yaml
   - type: SDKs
     url: https://github.com/iArmanKarimi/Cataas-API-js
   - type: SDKs
@@ -121,14 +113,6 @@ apis:
     url: examples/upload-cat-request-example.json
   - type: Examples
     url: examples/edit-cat-request-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-cats.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-catalog.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-upload.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-admin.yaml
   - type: SDKs
     url: https://github.com/iArmanKarimi/Cataas-API-js
   - type: SDKs
@@ -171,14 +155,6 @@ apis:
     url: examples/upload-cat-request-example.json
   - type: Examples
     url: examples/edit-cat-request-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-cats.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-catalog.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-upload.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-admin.yaml
   - type: SDKs
     url: https://github.com/iArmanKarimi/Cataas-API-js
   - type: SDKs
@@ -221,14 +197,6 @@ apis:
     url: examples/upload-cat-request-example.json
   - type: Examples
     url: examples/edit-cat-request-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-cats.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-catalog.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-upload.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/cataas-admin.yaml
   - type: SDKs
     url: https://github.com/iArmanKarimi/Cataas-API-js
   - type: SDKs
@@ -236,6 +204,8 @@ apis:
   - type: SDKs
     url: https://github.com/chimpook/cataas-api-php
 common:
+  - type: IssueTracker
+    url: https://github.com/cataas/cataas/issues
   - type: AgenticAccess
     url: agentic-access/cataas-agentic-access.yml
   - type: DomainSecurity
