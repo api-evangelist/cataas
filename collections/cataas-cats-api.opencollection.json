@@ -1,0 +1,433 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cataas Admin Cats API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CATAAS Get a Random Cat Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat",
+            "params": [
+              {
+                "name": "json",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, return a JSON metadata document instead of the binary image."
+              },
+              {
+                "name": "html",
+                "value": "false",
+                "type": "query",
+                "description": "When `true`, return an HTML page that embeds the image."
+              },
+              {
+                "name": "type",
+                "value": "small",
+                "type": "query",
+                "description": "Sized variant of the image."
+              },
+              {
+                "name": "width",
+                "value": "400",
+                "type": "query",
+                "description": "Resize the image to the specified width in pixels (max 1000)."
+              },
+              {
+                "name": "height",
+                "value": "400",
+                "type": "query",
+                "description": "Resize the image to the specified height in pixels (max 1000)."
+              },
+              {
+                "name": "fit",
+                "value": "cover",
+                "type": "query",
+                "description": "Resize strategy when both width and height are provided."
+              },
+              {
+                "name": "position",
+                "value": "center",
+                "type": "query",
+                "description": "Position of the cropped image when `fit=cover` or `fit=contain`."
+              },
+              {
+                "name": "filter",
+                "value": "mono",
+                "type": "query",
+                "description": "Visual filter applied to the image."
+              },
+              {
+                "name": "blur",
+                "value": "5",
+                "type": "query",
+                "description": "Blur radius when `filter=blur`."
+              },
+              {
+                "name": "brightness",
+                "value": "1.2",
+                "type": "query",
+                "description": "Brightness multiplier for `filter=custom`."
+              },
+              {
+                "name": "lightness",
+                "value": "0",
+                "type": "query",
+                "description": "Lightness offset for `filter=custom`."
+              },
+              {
+                "name": "saturation",
+                "value": "1.5",
+                "type": "query",
+                "description": "Saturation multiplier for `filter=custom`."
+              },
+              {
+                "name": "hue",
+                "value": "60",
+                "type": "query",
+                "description": "Hue rotation in degrees for `filter=custom`."
+              },
+              {
+                "name": "r",
+                "value": "200",
+                "type": "query",
+                "description": "Red channel multiplier (0-255) for `filter=custom`."
+              },
+              {
+                "name": "g",
+                "value": "100",
+                "type": "query",
+                "description": "Green channel multiplier (0-255) for `filter=custom`."
+              },
+              {
+                "name": "b",
+                "value": "50",
+                "type": "query",
+                "description": "Blue channel multiplier (0-255) for `filter=custom`."
+              }
+            ]
+          },
+          "docs": "Returns a random cat image. By default the response is the binary image payload; pass `json=true` to receive a metadata JSON document with an `_id`, `tags`, `mimetype`, and a `url` you can embed."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get a Random Cat Image by Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat/:tag",
+            "params": [
+              {
+                "name": "tag",
+                "value": "cute",
+                "type": "path",
+                "description": "One tag or several comma-separated tags. Example: `cute` or `cute,orange`."
+              },
+              {
+                "name": "json",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, return a JSON metadata document instead of the binary image."
+              },
+              {
+                "name": "html",
+                "value": "false",
+                "type": "query",
+                "description": "When `true`, return an HTML page that embeds the image."
+              },
+              {
+                "name": "type",
+                "value": "small",
+                "type": "query",
+                "description": "Sized variant of the image."
+              },
+              {
+                "name": "width",
+                "value": "400",
+                "type": "query",
+                "description": "Resize the image to the specified width in pixels (max 1000)."
+              },
+              {
+                "name": "height",
+                "value": "400",
+                "type": "query",
+                "description": "Resize the image to the specified height in pixels (max 1000)."
+              },
+              {
+                "name": "fit",
+                "value": "cover",
+                "type": "query",
+                "description": "Resize strategy when both width and height are provided."
+              },
+              {
+                "name": "position",
+                "value": "center",
+                "type": "query",
+                "description": "Position of the cropped image when `fit=cover` or `fit=contain`."
+              },
+              {
+                "name": "filter",
+                "value": "mono",
+                "type": "query",
+                "description": "Visual filter applied to the image."
+              },
+              {
+                "name": "blur",
+                "value": "5",
+                "type": "query",
+                "description": "Blur radius when `filter=blur`."
+              }
+            ]
+          },
+          "docs": "Returns a random cat image that carries the provided tag (or any of the comma-separated tags supplied). Supports the same sizing, filter, and JSON/HTML response negotiation as `/cat`."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get a Random Cat GIF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat/gif",
+            "params": [
+              {
+                "name": "json",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, return a JSON metadata document instead of the binary image."
+              },
+              {
+                "name": "html",
+                "value": "false",
+                "type": "query",
+                "description": "When `true`, return an HTML page that embeds the image."
+              },
+              {
+                "name": "width",
+                "value": "400",
+                "type": "query",
+                "description": "Resize the image to the specified width in pixels (max 1000)."
+              },
+              {
+                "name": "height",
+                "value": "400",
+                "type": "query",
+                "description": "Resize the image to the specified height in pixels (max 1000)."
+              }
+            ]
+          },
+          "docs": "Returns a random animated cat (image/gif). Same query parameters as `/cat` may be used for sizing and JSON negotiation. Filters do not apply to GIFs."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get a Random Cat Image with Text Overlay",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat/says/:text",
+            "params": [
+              {
+                "name": "text",
+                "value": "hello world",
+                "type": "path",
+                "description": "Text to overlay onto the image."
+              },
+              {
+                "name": "fontSize",
+                "value": "50",
+                "type": "query",
+                "description": "Font size in pixels for `/says/` text overlays."
+              },
+              {
+                "name": "fontColor",
+                "value": "white",
+                "type": "query",
+                "description": "Font color name or hex value (e.g., `red`, `#ffffff`)."
+              },
+              {
+                "name": "fontBackground",
+                "value": "black",
+                "type": "query",
+                "description": "Background color behind the overlay text."
+              },
+              {
+                "name": "json",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, return a JSON metadata document instead of the binary image."
+              },
+              {
+                "name": "html",
+                "value": "false",
+                "type": "query",
+                "description": "When `true`, return an HTML page that embeds the image."
+              },
+              {
+                "name": "type",
+                "value": "small",
+                "type": "query",
+                "description": "Sized variant of the image."
+              },
+              {
+                "name": "filter",
+                "value": "mono",
+                "type": "query",
+                "description": "Visual filter applied to the image."
+              }
+            ]
+          },
+          "docs": "Returns a random cat image with the supplied text rendered on top. Use `fontSize`, `fontColor`, and `fontBackground` to style the overlay. URL-encode any special characters in `text`."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get a Random Tagged Cat with Text Overlay",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat/:tag/says/:text",
+            "params": [
+              {
+                "name": "tag",
+                "value": "cute",
+                "type": "path",
+                "description": "One or more comma-separated tags."
+              },
+              {
+                "name": "text",
+                "value": "hello world",
+                "type": "path",
+                "description": "Text to overlay onto the image."
+              },
+              {
+                "name": "fontSize",
+                "value": "50",
+                "type": "query",
+                "description": "Font size in pixels for `/says/` text overlays."
+              },
+              {
+                "name": "fontColor",
+                "value": "white",
+                "type": "query",
+                "description": "Font color name or hex value (e.g., `red`, `#ffffff`)."
+              },
+              {
+                "name": "fontBackground",
+                "value": "black",
+                "type": "query",
+                "description": "Background color behind the overlay text."
+              },
+              {
+                "name": "json",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, return a JSON metadata document instead of the binary image."
+              }
+            ]
+          },
+          "docs": "Returns a random cat image that carries `tag` and renders `text` on top. Combines the behavior of `/cat/{tag}` and `/cat/says/{text}`."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get a Specific Cat Image by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "595f280b557291a9750ebf66",
+                "type": "path",
+                "description": "Catalog id of the cat document."
+              },
+              {
+                "name": "json",
+                "value": "true",
+                "type": "query",
+                "description": "When `true`, return a JSON metadata document instead of the binary image."
+              },
+              {
+                "name": "html",
+                "value": "false",
+                "type": "query",
+                "description": "When `true`, return an HTML page that embeds the image."
+              },
+              {
+                "name": "type",
+                "value": "small",
+                "type": "query",
+                "description": "Sized variant of the image."
+              },
+              {
+                "name": "filter",
+                "value": "mono",
+                "type": "query",
+                "description": "Visual filter applied to the image."
+              }
+            ]
+          },
+          "docs": "Returns the cat image identified by `id`. The id is the MongoDB document id surfaced in catalog (`/api/cats`) responses."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get a Specific Cat with Text Overlay",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/cat/:id/says/:text",
+            "params": [
+              {
+                "name": "id",
+                "value": "595f280b557291a9750ebf66",
+                "type": "path",
+                "description": "Catalog id of the cat document."
+              },
+              {
+                "name": "text",
+                "value": "hello world",
+                "type": "path",
+                "description": "Text to overlay onto the image."
+              },
+              {
+                "name": "fontSize",
+                "value": "50",
+                "type": "query",
+                "description": "Font size in pixels for `/says/` text overlays."
+              },
+              {
+                "name": "fontColor",
+                "value": "white",
+                "type": "query",
+                "description": "Font color name or hex value (e.g., `red`, `#ffffff`)."
+              },
+              {
+                "name": "fontBackground",
+                "value": "black",
+                "type": "query",
+                "description": "Background color behind the overlay text."
+              }
+            ]
+          },
+          "docs": "Returns the cat image identified by `id` with `text` rendered on top."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

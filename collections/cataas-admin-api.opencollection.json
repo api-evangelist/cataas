@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cataas Admin API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CATAAS Administrative List of Cats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/admin/cats",
+            "params": [
+              {
+                "name": "skip",
+                "value": "0",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns cats for moderation, including unvalidated entries."
+        },
+        {
+          "info": {
+            "name": "CATAAS Validate a Cat Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cataas.com/admin/cats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "595f280b557291a9750ebf66",
+                "type": "path",
+                "description": "Catalog id of the cat document."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Marks the cat document identified by `id` as `validated: true`."
+        },
+        {
+          "info": {
+            "name": "CATAAS Edit a Cat Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cataas.com/admin/cats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "595f280b557291a9750ebf66",
+                "type": "path",
+                "description": "Catalog id of the cat document."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates the tags on the cat document identified by `id`."
+        },
+        {
+          "info": {
+            "name": "CATAAS Delete a Cat Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cataas.com/admin/cats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "595f280b557291a9750ebf66",
+                "type": "path",
+                "description": "Catalog id of the cat document."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes the cat document and its image file from disk."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,280 @@
+{
+  "item": [
+    {
+      "id": "fdb96db5-2b85-446b-beb5-ae2c8d5b790b",
+      "name": "Catalog",
+      "description": {
+        "content": "Browse cats, tags, and stats programmatically (JSON)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bb0ed1d-1238-4940-b863-6c5e1221a2b5",
+          "name": "CATAAS List Cats in the Catalog",
+          "request": {
+            "name": "CATAAS List Cats in the Catalog",
+            "description": {
+              "content": "Returns an array of cat documents. Filter by tags and paginate using `skip` and `limit`. Use this endpoint to discover ids consumable by `/cat/{id}`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "cats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Comma-separated list of tags to filter on. Returns only cats that carry at least one of the given tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "632a7aa4-a187-46ad-b9d6-7f89734ba316",
+              "name": "Array of cat documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "cats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tags",
+                      "value": "cute,orange"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"595f280b557291a9750ebf66\",\n    \"id\": \"595f280b557291a9750ebf66\",\n    \"tags\": [\n      \"cute\",\n      \"orange\"\n    ],\n    \"mimetype\": \"image/jpeg\",\n    \"size\": 18234,\n    \"created_at\": \"2026-05-29T14:30:00Z\",\n    \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "410225e5-d738-44d5-ad69-c6ce612db107",
+          "name": "CATAAS List All Available Tags",
+          "request": {
+            "name": "CATAAS List All Available Tags",
+            "description": {
+              "content": "Returns a sorted array of every unique tag attached to a cat in the catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "259c234b-788c-4aa4-8847-fc70648a6355",
+              "name": "Sorted array of tag strings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"black\",\n  \"cute\",\n  \"gif\",\n  \"orange\",\n  \"sleepy\",\n  \"white\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18ab5fa4-e2f0-497a-b13d-f6e62ae0e66c",
+          "name": "CATAAS Get the Total Number of Cats",
+          "request": {
+            "name": "CATAAS Get the Total Number of Cats",
+            "description": {
+              "content": "Returns a single document with the total count of cats in the catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2696a963-2f2d-4ccf-958e-f76498b37794",
+              "name": "Total cat count",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 9384\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cataas.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d15a52cf-fbff-475f-95d7-3e16877df686",
+    "name": "Cataas Admin Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.\n\nContact Support:\n Name: CATAAS Project",
+      "type": "text/plain"
+    }
+  }
+}

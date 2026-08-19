@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cataas Admin Upload API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CATAAS Upload a New Cat Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cataas.com/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Submit a new cat image to the catalog. The image is validated as a real image file before being persisted. May require moderation before appearing in `/api/cats`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

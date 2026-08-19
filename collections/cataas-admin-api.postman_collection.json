@@ -1,0 +1,864 @@
+{
+  "item": [
+    {
+      "id": "d0d5bfe3-509a-4af7-bb1e-e8f7a6c62a4a",
+      "name": "Admin",
+      "description": {
+        "content": "Administrative operations on the cat catalog (admin token required)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a630b469-eb45-450f-9d26-85a972a47fe7",
+          "name": "CATAAS Administrative List of Cats",
+          "request": {
+            "name": "CATAAS Administrative List of Cats",
+            "description": {
+              "content": "Returns cats for moderation, including unvalidated entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eb6b9cdc-0ab4-41d4-a058-4d7fb129c5e9",
+              "name": "Array of cat documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"595f280b557291a9750ebf66\",\n    \"tags\": [\n      \"cute\",\n      \"orange\"\n    ],\n    \"_id\": \"595f280b557291a9750ebf66\",\n    \"mimetype\": \"image/jpeg\",\n    \"size\": 18234,\n    \"created_at\": \"2026-05-29T14:30:00Z\",\n    \"edited_at\": \"2026-05-29T15:00:00Z\",\n    \"validated\": true,\n    \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n  },\n  {\n    \"id\": \"595f280b557291a9750ebf66\",\n    \"tags\": [\n      \"cute\",\n      \"orange\"\n    ],\n    \"_id\": \"595f280b557291a9750ebf66\",\n    \"mimetype\": \"image/jpeg\",\n    \"size\": 18234,\n    \"created_at\": \"2026-05-29T14:30:00Z\",\n    \"edited_at\": \"2026-05-29T15:00:00Z\",\n    \"validated\": true,\n    \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe04ff78-2df7-4ce2-b444-f4c4fdb79b64",
+              "name": "Admin token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"UnauthorizedError\",\n    \"message\": \"Missing or invalid admin token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8e01fd6-333b-4726-99d5-995b15dd3a19",
+          "name": "CATAAS Validate a Cat Record",
+          "request": {
+            "name": "CATAAS Validate a Cat Record",
+            "description": {
+              "content": "Marks the cat document identified by `id` as `validated: true`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cats",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Catalog id of the cat document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76b5deca-1596-4f38-8535-2669f25543e5",
+              "name": "The updated cat document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9e46cfe-b3c7-40e4-94f6-0a380e9179dc",
+              "name": "Admin token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"UnauthorizedError\",\n    \"message\": \"Missing or invalid admin token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dfe3607-550a-45d4-9690-04b91f480873",
+              "name": "Requested cat or resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"NotFoundError\",\n    \"message\": \"Cat not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ef128fa-e302-4586-a2c5-b59967b3ea6d",
+          "name": "CATAAS Edit a Cat Record",
+          "request": {
+            "name": "CATAAS Edit a Cat Record",
+            "description": {
+              "content": "Updates the tags on the cat document identified by `id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cats",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Catalog id of the cat document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tags\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7a8d6f7-aabc-449f-af22-4e91b2e6a483",
+              "name": "The updated cat document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": \"cute,orange,sleepy\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0637736c-fe99-4cfb-9e7d-ec9260a2a42e",
+              "name": "Admin token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": \"cute,orange,sleepy\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"UnauthorizedError\",\n    \"message\": \"Missing or invalid admin token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad13aee5-e02b-41d5-ba0a-beb071c46960",
+              "name": "Requested cat or resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": \"cute,orange,sleepy\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"NotFoundError\",\n    \"message\": \"Cat not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7831435-3207-423f-b9f8-1c4d04c25b0f",
+          "name": "CATAAS Delete a Cat Record",
+          "request": {
+            "name": "CATAAS Delete a Cat Record",
+            "description": {
+              "content": "Removes the cat document and its image file from disk.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "cats",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Catalog id of the cat document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c64db730-0f63-4ced-bbfc-03b259b94488",
+              "name": "Cat deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d1786c2-1c2d-4981-9afe-5ebd13c7c621",
+              "name": "Admin token missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"UnauthorizedError\",\n    \"message\": \"Missing or invalid admin token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f23b9d4c-6bf4-4417-a99f-47a8e1782683",
+              "name": "Requested cat or resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "cats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"NotFoundError\",\n    \"message\": \"Cat not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cataas.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bac683b1-66d7-4aa7-a65e-26260beeeae4",
+    "name": "Cataas Admin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.\n\nContact Support:\n Name: CATAAS Project",
+      "type": "text/plain"
+    }
+  }
+}

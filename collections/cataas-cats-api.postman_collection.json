@@ -1,0 +1,1378 @@
+{
+  "item": [
+    {
+      "id": "c125d9a5-fc73-4e84-8017-8eae29745987",
+      "name": "Cats",
+      "description": {
+        "content": "Random and tagged cat image retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2835d0bd-84cd-48be-bfa6-402142a1f9cb",
+          "name": "CATAAS Get a Random Cat Image",
+          "request": {
+            "name": "CATAAS Get a Random Cat Image",
+            "description": {
+              "content": "Returns a random cat image. By default the response is the binary image payload; pass `json=true` to receive a metadata JSON document with an `_id`, `tags`, `mimetype`, and a `url` you can embed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<boolean>",
+                  "description": "When `true`, return a JSON metadata document instead of the binary image."
+                },
+                {
+                  "disabled": false,
+                  "key": "html",
+                  "value": "<boolean>",
+                  "description": "When `true`, return an HTML page that embeds the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Sized variant of the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>",
+                  "description": "Resize the image to the specified width in pixels (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>",
+                  "description": "Resize the image to the specified height in pixels (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fit",
+                  "value": "<string>",
+                  "description": "Resize strategy when both width and height are provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "position",
+                  "value": "<string>",
+                  "description": "Position of the cropped image when `fit=cover` or `fit=contain`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Visual filter applied to the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "blur",
+                  "value": "<number>",
+                  "description": "Blur radius when `filter=blur`."
+                },
+                {
+                  "disabled": false,
+                  "key": "brightness",
+                  "value": "<number>",
+                  "description": "Brightness multiplier for `filter=custom`."
+                },
+                {
+                  "disabled": false,
+                  "key": "lightness",
+                  "value": "<number>",
+                  "description": "Lightness offset for `filter=custom`."
+                },
+                {
+                  "disabled": false,
+                  "key": "saturation",
+                  "value": "<number>",
+                  "description": "Saturation multiplier for `filter=custom`."
+                },
+                {
+                  "disabled": false,
+                  "key": "hue",
+                  "value": "<integer>",
+                  "description": "Hue rotation in degrees for `filter=custom`."
+                },
+                {
+                  "disabled": false,
+                  "key": "r",
+                  "value": "<integer>",
+                  "description": "Red channel multiplier (0-255) for `filter=custom`."
+                },
+                {
+                  "disabled": false,
+                  "key": "g",
+                  "value": "<integer>",
+                  "description": "Green channel multiplier (0-255) for `filter=custom`."
+                },
+                {
+                  "disabled": false,
+                  "key": "b",
+                  "value": "<integer>",
+                  "description": "Blue channel multiplier (0-255) for `filter=custom`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bb76dc2-390a-4a2e-a5c4-5b6612d0b29b",
+              "name": "A random cat image (binary) or metadata document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "width",
+                      "value": "400"
+                    },
+                    {
+                      "key": "height",
+                      "value": "400"
+                    },
+                    {
+                      "key": "fit",
+                      "value": "cover"
+                    },
+                    {
+                      "key": "position",
+                      "value": "center"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    },
+                    {
+                      "key": "blur",
+                      "value": "5"
+                    },
+                    {
+                      "key": "brightness",
+                      "value": "1.2"
+                    },
+                    {
+                      "key": "lightness",
+                      "value": "0"
+                    },
+                    {
+                      "key": "saturation",
+                      "value": "1.5"
+                    },
+                    {
+                      "key": "hue",
+                      "value": "60"
+                    },
+                    {
+                      "key": "r",
+                      "value": "200"
+                    },
+                    {
+                      "key": "g",
+                      "value": "100"
+                    },
+                    {
+                      "key": "b",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d0dda2b-98a3-4bdb-9475-733ebaafba2e",
+              "name": "Requested cat or resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "width",
+                      "value": "400"
+                    },
+                    {
+                      "key": "height",
+                      "value": "400"
+                    },
+                    {
+                      "key": "fit",
+                      "value": "cover"
+                    },
+                    {
+                      "key": "position",
+                      "value": "center"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    },
+                    {
+                      "key": "blur",
+                      "value": "5"
+                    },
+                    {
+                      "key": "brightness",
+                      "value": "1.2"
+                    },
+                    {
+                      "key": "lightness",
+                      "value": "0"
+                    },
+                    {
+                      "key": "saturation",
+                      "value": "1.5"
+                    },
+                    {
+                      "key": "hue",
+                      "value": "60"
+                    },
+                    {
+                      "key": "r",
+                      "value": "200"
+                    },
+                    {
+                      "key": "g",
+                      "value": "100"
+                    },
+                    {
+                      "key": "b",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"NotFoundError\",\n    \"message\": \"Cat not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f3f35ae-7d7d-40f5-82f5-94b9905c3b98",
+          "name": "CATAAS Get a Random Cat Image by Tag",
+          "request": {
+            "name": "CATAAS Get a Random Cat Image by Tag",
+            "description": {
+              "content": "Returns a random cat image that carries the provided tag (or any of the comma-separated tags supplied). Supports the same sizing, filter, and JSON/HTML response negotiation as `/cat`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat",
+                ":tag"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<boolean>",
+                  "description": "When `true`, return a JSON metadata document instead of the binary image."
+                },
+                {
+                  "disabled": false,
+                  "key": "html",
+                  "value": "<boolean>",
+                  "description": "When `true`, return an HTML page that embeds the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Sized variant of the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>",
+                  "description": "Resize the image to the specified width in pixels (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>",
+                  "description": "Resize the image to the specified height in pixels (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fit",
+                  "value": "<string>",
+                  "description": "Resize strategy when both width and height are provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "position",
+                  "value": "<string>",
+                  "description": "Position of the cropped image when `fit=cover` or `fit=contain`."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Visual filter applied to the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "blur",
+                  "value": "<number>",
+                  "description": "Blur radius when `filter=blur`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tag",
+                  "description": "(Required) One tag or several comma-separated tags. Example: `cute` or `cute,orange`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e8e8c81-a18c-47bb-9953-18a45440aa7f",
+              "name": "A random tagged cat image",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    ":tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "width",
+                      "value": "400"
+                    },
+                    {
+                      "key": "height",
+                      "value": "400"
+                    },
+                    {
+                      "key": "fit",
+                      "value": "cover"
+                    },
+                    {
+                      "key": "position",
+                      "value": "center"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    },
+                    {
+                      "key": "blur",
+                      "value": "5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) One tag or several comma-separated tags. Example: `cute` or `cute,orange`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32e8c05a-a18e-4aaf-8d15-a6e805e8a8f9",
+              "name": "Requested cat or resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    ":tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "width",
+                      "value": "400"
+                    },
+                    {
+                      "key": "height",
+                      "value": "400"
+                    },
+                    {
+                      "key": "fit",
+                      "value": "cover"
+                    },
+                    {
+                      "key": "position",
+                      "value": "center"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    },
+                    {
+                      "key": "blur",
+                      "value": "5"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) One tag or several comma-separated tags. Example: `cute` or `cute,orange`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"NotFoundError\",\n    \"message\": \"Cat not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28272c6e-c4e0-4eb7-b9d2-89dd87512610",
+          "name": "CATAAS Get a Random Cat GIF",
+          "request": {
+            "name": "CATAAS Get a Random Cat GIF",
+            "description": {
+              "content": "Returns a random animated cat (image/gif). Same query parameters as `/cat` may be used for sizing and JSON negotiation. Filters do not apply to GIFs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat",
+                "gif"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<boolean>",
+                  "description": "When `true`, return a JSON metadata document instead of the binary image."
+                },
+                {
+                  "disabled": false,
+                  "key": "html",
+                  "value": "<boolean>",
+                  "description": "When `true`, return an HTML page that embeds the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>",
+                  "description": "Resize the image to the specified width in pixels (max 1000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>",
+                  "description": "Resize the image to the specified height in pixels (max 1000)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/gif"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab880f32-9dc1-41c6-93c2-a0dae8745892",
+              "name": "A random cat GIF",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    "gif"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "width",
+                      "value": "400"
+                    },
+                    {
+                      "key": "height",
+                      "value": "400"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/gif"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "896b66ef-1c92-4489-bf47-a63c4f67853b",
+          "name": "CATAAS Get a Random Cat Image with Text Overlay",
+          "request": {
+            "name": "CATAAS Get a Random Cat Image with Text Overlay",
+            "description": {
+              "content": "Returns a random cat image with the supplied text rendered on top. Use `fontSize`, `fontColor`, and `fontBackground` to style the overlay. URL-encode any special characters in `text`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat",
+                "says",
+                ":text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fontSize",
+                  "value": "<integer>",
+                  "description": "Font size in pixels for `/says/` text overlays."
+                },
+                {
+                  "disabled": false,
+                  "key": "fontColor",
+                  "value": "<string>",
+                  "description": "Font color name or hex value (e.g., `red`, `#ffffff`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fontBackground",
+                  "value": "<string>",
+                  "description": "Background color behind the overlay text."
+                },
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<boolean>",
+                  "description": "When `true`, return a JSON metadata document instead of the binary image."
+                },
+                {
+                  "disabled": false,
+                  "key": "html",
+                  "value": "<boolean>",
+                  "description": "When `true`, return an HTML page that embeds the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Sized variant of the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Visual filter applied to the image."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "text",
+                  "description": "(Required) Text to overlay onto the image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e0c1bb7-d25d-444e-98ca-d04db444a8a8",
+              "name": "A random cat image with overlay",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    "says",
+                    ":text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fontSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "fontColor",
+                      "value": "white"
+                    },
+                    {
+                      "key": "fontBackground",
+                      "value": "black"
+                    },
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "text",
+                      "description": "(Required) Text to overlay onto the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52fd239d-8985-400f-a74e-14818ca92d4a",
+          "name": "CATAAS Get a Random Tagged Cat with Text Overlay",
+          "request": {
+            "name": "CATAAS Get a Random Tagged Cat with Text Overlay",
+            "description": {
+              "content": "Returns a random cat image that carries `tag` and renders `text` on top. Combines the behavior of `/cat/{tag}` and `/cat/says/{text}`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat",
+                ":tag",
+                "says",
+                ":text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fontSize",
+                  "value": "<integer>",
+                  "description": "Font size in pixels for `/says/` text overlays."
+                },
+                {
+                  "disabled": false,
+                  "key": "fontColor",
+                  "value": "<string>",
+                  "description": "Font color name or hex value (e.g., `red`, `#ffffff`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fontBackground",
+                  "value": "<string>",
+                  "description": "Background color behind the overlay text."
+                },
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<boolean>",
+                  "description": "When `true`, return a JSON metadata document instead of the binary image."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tag",
+                  "description": "(Required) One or more comma-separated tags."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "text",
+                  "description": "(Required) Text to overlay onto the image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "447a011f-4d98-44dc-a2a6-53131d3321fe",
+              "name": "A random tagged cat image with overlay",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    ":tag",
+                    "says",
+                    ":text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fontSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "fontColor",
+                      "value": "white"
+                    },
+                    {
+                      "key": "fontBackground",
+                      "value": "black"
+                    },
+                    {
+                      "key": "json",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tag",
+                      "description": "(Required) One or more comma-separated tags."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "text",
+                      "description": "(Required) Text to overlay onto the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5da7bdee-2850-4a85-8adf-085cb54eef66",
+          "name": "CATAAS Get a Specific Cat Image by Id",
+          "request": {
+            "name": "CATAAS Get a Specific Cat Image by Id",
+            "description": {
+              "content": "Returns the cat image identified by `id`. The id is the MongoDB document id surfaced in catalog (`/api/cats`) responses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "json",
+                  "value": "<boolean>",
+                  "description": "When `true`, return a JSON metadata document instead of the binary image."
+                },
+                {
+                  "disabled": false,
+                  "key": "html",
+                  "value": "<boolean>",
+                  "description": "When `true`, return an HTML page that embeds the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Sized variant of the image."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Visual filter applied to the image."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Catalog id of the cat document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d81ea2dc-4ea0-4f18-a6b0-14c68fd59033",
+              "name": "The requested cat image",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"595f280b557291a9750ebf66\",\n  \"tags\": [\n    \"cute\",\n    \"orange\"\n  ],\n  \"_id\": \"595f280b557291a9750ebf66\",\n  \"mimetype\": \"image/jpeg\",\n  \"size\": 18234,\n  \"created_at\": \"2026-05-29T14:30:00Z\",\n  \"edited_at\": \"2026-05-29T15:00:00Z\",\n  \"validated\": true,\n  \"url\": \"https://cataas.com/cat/595f280b557291a9750ebf66\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea4ae593-4a90-4f77-8205-478bbb6b528e",
+              "name": "Requested cat or resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "json",
+                      "value": "true"
+                    },
+                    {
+                      "key": "html",
+                      "value": "false"
+                    },
+                    {
+                      "key": "type",
+                      "value": "small"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "mono"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"name\": \"NotFoundError\",\n    \"message\": \"Cat not found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fb9889c-7ce5-4d7c-bc5a-fe8120c6bb74",
+          "name": "CATAAS Get a Specific Cat with Text Overlay",
+          "request": {
+            "name": "CATAAS Get a Specific Cat with Text Overlay",
+            "description": {
+              "content": "Returns the cat image identified by `id` with `text` rendered on top.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cat",
+                ":id",
+                "says",
+                ":text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fontSize",
+                  "value": "<integer>",
+                  "description": "Font size in pixels for `/says/` text overlays."
+                },
+                {
+                  "disabled": false,
+                  "key": "fontColor",
+                  "value": "<string>",
+                  "description": "Font color name or hex value (e.g., `red`, `#ffffff`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fontBackground",
+                  "value": "<string>",
+                  "description": "Background color behind the overlay text."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Catalog id of the cat document."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "text",
+                  "description": "(Required) Text to overlay onto the image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e6e2ddc-5ca7-4aba-a7fe-875436abe64d",
+              "name": "The cat image with overlay",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cat",
+                    ":id",
+                    "says",
+                    ":text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fontSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "fontColor",
+                      "value": "white"
+                    },
+                    {
+                      "key": "fontBackground",
+                      "value": "black"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog id of the cat document."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "text",
+                      "description": "(Required) Text to overlay onto the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/jpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cataas.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9f0860a8-1fab-44d0-b18f-0e9208269f7b",
+    "name": "Cataas Admin Cats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.\n\nContact Support:\n Name: CATAAS Project",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cataas Admin Catalog API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "CATAAS List Cats in the Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/api/cats",
+            "params": [
+              {
+                "name": "tags",
+                "value": "cute,orange",
+                "type": "query",
+                "description": "Comma-separated list of tags to filter on. Returns only cats that carry at least one of the given tags."
+              },
+              {
+                "name": "skip",
+                "value": "0",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "25",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              }
+            ]
+          },
+          "docs": "Returns an array of cat documents. Filter by tags and paginate using `skip` and `limit`. Use this endpoint to discover ids consumable by `/cat/{id}`."
+        },
+        {
+          "info": {
+            "name": "CATAAS List All Available Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/api/tags"
+          },
+          "docs": "Returns a sorted array of every unique tag attached to a cat in the catalog."
+        },
+        {
+          "info": {
+            "name": "CATAAS Get the Total Number of Cats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cataas.com/api/count"
+          },
+          "docs": "Returns a single document with the total count of cats in the catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
