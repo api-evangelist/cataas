@@ -31,6 +31,12 @@ x-tier-reason: bulk-registered-from-public-apis
 tags:
   - Animals
   - Cats
+  - Image
+  - Open-Source
+  - Public APIs
+tags_raw:
+  - Animals
+  - Cats
   - Images
   - Open Source
   - Public APIs
