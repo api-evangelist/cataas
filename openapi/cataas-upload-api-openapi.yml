@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Cataas Admin Upload API
   version: 1.0.0
@@ -51,6 +51,40 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    UploadCatRequest:
+      title: UploadCatRequest
+      type: object
+      description: Multipart upload payload for a new cat image.
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The cat image file (JPEG, PNG, or GIF).
+        tags:
+          type: string
+          description: Comma-separated list of tags to apply to the new cat.
+          example: cute,orange
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Generic error response.
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
     Cat:
       title: Cat
       type: object
@@ -102,40 +136,6 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
-    UploadCatRequest:
-      title: UploadCatRequest
-      type: object
-      description: Multipart upload payload for a new cat image.
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-          description: The cat image file (JPEG, PNG, or GIF).
-        tags:
-          type: string
-          description: Comma-separated list of tags to apply to the new cat.
-          example: cute,orange
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Generic error response.
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          description: Error details.
-          properties:
-            name:
-              type: string
-              description: Error class name.
-              example: NotFoundError
-            message:
-              type: string
-              description: Human-readable error description.
-              example: Cat not found
   responses:
     BadRequest:
       description: Invalid input

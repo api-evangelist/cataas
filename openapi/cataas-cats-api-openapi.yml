@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Cataas Admin Cats API
   version: 1.0.0
@@ -280,7 +280,63 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: Requested cat or resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default 404 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: NotFoundError
+                  message: Cat not found
   parameters:
+    lightness:
+      name: lightness
+      in: query
+      required: false
+      description: Lightness offset for `filter=custom`.
+      schema:
+        type: number
+        minimum: -100
+        maximum: 100
+      example: 0
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: Visual filter applied to the image.
+      schema:
+        type: string
+        enum:
+        - blur
+        - mono
+        - negate
+        - custom
+      example: mono
+    blur:
+      name: blur
+      in: query
+      required: false
+      description: Blur radius when `filter=blur`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 5
+    html:
+      name: html
+      in: query
+      required: false
+      description: When `true`, return an HTML page that embeds the image.
+      schema:
+        type: boolean
+      example: false
     fit:
       name: fit
       in: query
@@ -295,6 +351,72 @@ components:
         - inside
         - outside
       example: cover
+    brightness:
+      name: brightness
+      in: query
+      required: false
+      description: Brightness multiplier for `filter=custom`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 1.2
+    green:
+      name: g
+      in: query
+      required: false
+      description: Green channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 100
+    json:
+      name: json
+      in: query
+      required: false
+      description: When `true`, return a JSON metadata document instead of the binary image.
+      schema:
+        type: boolean
+      example: true
+    height:
+      name: height
+      in: query
+      required: false
+      description: Resize the image to the specified height in pixels (max 1000).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+      example: 400
+    fontSize:
+      name: fontSize
+      in: query
+      required: false
+      description: Font size in pixels for `/says/` text overlays.
+      schema:
+        type: integer
+        minimum: 8
+        maximum: 200
+      example: 50
+    fontBackground:
+      name: fontBackground
+      in: query
+      required: false
+      description: Background color behind the overlay text.
+      schema:
+        type: string
+      example: black
+    hue:
+      name: hue
+      in: query
+      required: false
+      description: Hue rotation in degrees for `filter=custom`.
+      schema:
+        type: integer
+        minimum: -360
+        maximum: 360
+      example: 60
     red:
       name: r
       in: query
@@ -305,26 +427,14 @@ components:
         minimum: 0
         maximum: 255
       example: 200
-    saturation:
-      name: saturation
+    fontColor:
+      name: fontColor
       in: query
       required: false
-      description: Saturation multiplier for `filter=custom`.
+      description: Font color name or hex value (e.g., `red`, `#ffffff`).
       schema:
-        type: number
-        minimum: 0
-        maximum: 100
-      example: 1.5
-    lightness:
-      name: lightness
-      in: query
-      required: false
-      description: Lightness offset for `filter=custom`.
-      schema:
-        type: number
-        minimum: -100
-        maximum: 100
-      example: 0
+        type: string
+      example: white
     type:
       name: type
       in: query
@@ -339,16 +449,6 @@ components:
         - square
         - sq
       example: small
-    hue:
-      name: hue
-      in: query
-      required: false
-      description: Hue rotation in degrees for `filter=custom`.
-      schema:
-        type: integer
-        minimum: -360
-        maximum: 360
-      example: 60
     width:
       name: width
       in: query
@@ -359,101 +459,6 @@ components:
         minimum: 1
         maximum: 1000
       example: 400
-    height:
-      name: height
-      in: query
-      required: false
-      description: Resize the image to the specified height in pixels (max 1000).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-      example: 400
-    json:
-      name: json
-      in: query
-      required: false
-      description: When `true`, return a JSON metadata document instead of the binary image.
-      schema:
-        type: boolean
-      example: true
-    filter:
-      name: filter
-      in: query
-      required: false
-      description: Visual filter applied to the image.
-      schema:
-        type: string
-        enum:
-        - blur
-        - mono
-        - negate
-        - custom
-      example: mono
-    green:
-      name: g
-      in: query
-      required: false
-      description: Green channel multiplier (0-255) for `filter=custom`.
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 255
-      example: 100
-    fontBackground:
-      name: fontBackground
-      in: query
-      required: false
-      description: Background color behind the overlay text.
-      schema:
-        type: string
-      example: black
-    fontSize:
-      name: fontSize
-      in: query
-      required: false
-      description: Font size in pixels for `/says/` text overlays.
-      schema:
-        type: integer
-        minimum: 8
-        maximum: 200
-      example: 50
-    fontColor:
-      name: fontColor
-      in: query
-      required: false
-      description: Font color name or hex value (e.g., `red`, `#ffffff`).
-      schema:
-        type: string
-      example: white
-    blur:
-      name: blur
-      in: query
-      required: false
-      description: Blur radius when `filter=blur`.
-      schema:
-        type: number
-        minimum: 0
-        maximum: 100
-      example: 5
-    brightness:
-      name: brightness
-      in: query
-      required: false
-      description: Brightness multiplier for `filter=custom`.
-      schema:
-        type: number
-        minimum: 0
-        maximum: 100
-      example: 1.2
-    html:
-      name: html
-      in: query
-      required: false
-      description: When `true`, return an HTML page that embeds the image.
-      schema:
-        type: boolean
-      example: false
     position:
       name: position
       in: query
@@ -485,41 +490,17 @@ components:
         minimum: 0
         maximum: 255
       example: 50
-  responses:
-    NotFound:
-      description: Requested cat or resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            NotFoundExample:
-              summary: Default 404 response
-              x-microcks-default: true
-              value:
-                error:
-                  name: NotFoundError
-                  message: Cat not found
+    saturation:
+      name: saturation
+      in: query
+      required: false
+      description: Saturation multiplier for `filter=custom`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 1.5
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Generic error response.
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          description: Error details.
-          properties:
-            name:
-              type: string
-              description: Error class name.
-              example: NotFoundError
-            message:
-              type: string
-              description: Human-readable error description.
-              example: Cat not found
     Cat:
       title: Cat
       type: object
@@ -571,6 +552,25 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Generic error response.
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
   securitySchemes:
     bearerAuth:
       type: http

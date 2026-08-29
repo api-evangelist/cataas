@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Cataas Admin API
   version: 1.0.0
@@ -171,6 +171,25 @@ components:
           type: string
           description: Comma-separated list of tags to set on the cat.
           example: cute,orange,sleepy
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Generic error response.
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
     Cat:
       title: Cat
       type: object
@@ -222,25 +241,6 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Generic error response.
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          description: Error details.
-          properties:
-            name:
-              type: string
-              description: Error class name.
-              example: NotFoundError
-            message:
-              type: string
-              description: Human-readable error description.
-              example: Cat not found
   responses:
     NotFound:
       description: Requested cat or resource was not found
