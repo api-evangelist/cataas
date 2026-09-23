@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Cataas Admin Catalog API
+  title: Cataas Catalog API
   version: 1.0.0
   description: CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.
   contact:

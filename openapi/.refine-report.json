@@ -1,10 +1,7 @@
 {
   "provider": "cataas",
   "sources": [
-    "cataas-admin-api-openapi.yml",
-    "cataas-catalog-api-openapi.yml",
-    "cataas-cats-api-openapi.yml",
-    "cataas-upload-api-openapi.yml"
+    "_ae-authored/cataas-openapi-original.yml"
   ],
   "outputs": [
     "cataas-admin-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "cataas-admin-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "cataas-catalog-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "cataas-cats-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "cataas-upload-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cataas-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "cataas-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cataas-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cataas-cats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cataas-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

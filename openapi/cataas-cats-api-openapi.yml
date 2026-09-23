@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Cataas Admin Cats API
+  title: Cataas Cats API
   version: 1.0.0
   description: CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.
   contact:
@@ -280,185 +280,17 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    NotFound:
-      description: Requested cat or resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            NotFoundExample:
-              summary: Default 404 response
-              x-microcks-default: true
-              value:
-                error:
-                  name: NotFoundError
-                  message: Cat not found
   parameters:
-    lightness:
-      name: lightness
+    saturation:
+      name: saturation
       in: query
       required: false
-      description: Lightness offset for `filter=custom`.
-      schema:
-        type: number
-        minimum: -100
-        maximum: 100
-      example: 0
-    filter:
-      name: filter
-      in: query
-      required: false
-      description: Visual filter applied to the image.
-      schema:
-        type: string
-        enum:
-        - blur
-        - mono
-        - negate
-        - custom
-      example: mono
-    blur:
-      name: blur
-      in: query
-      required: false
-      description: Blur radius when `filter=blur`.
+      description: Saturation multiplier for `filter=custom`.
       schema:
         type: number
         minimum: 0
         maximum: 100
-      example: 5
-    html:
-      name: html
-      in: query
-      required: false
-      description: When `true`, return an HTML page that embeds the image.
-      schema:
-        type: boolean
-      example: false
-    fit:
-      name: fit
-      in: query
-      required: false
-      description: Resize strategy when both width and height are provided.
-      schema:
-        type: string
-        enum:
-        - cover
-        - contain
-        - fill
-        - inside
-        - outside
-      example: cover
-    brightness:
-      name: brightness
-      in: query
-      required: false
-      description: Brightness multiplier for `filter=custom`.
-      schema:
-        type: number
-        minimum: 0
-        maximum: 100
-      example: 1.2
-    green:
-      name: g
-      in: query
-      required: false
-      description: Green channel multiplier (0-255) for `filter=custom`.
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 255
-      example: 100
-    json:
-      name: json
-      in: query
-      required: false
-      description: When `true`, return a JSON metadata document instead of the binary image.
-      schema:
-        type: boolean
-      example: true
-    height:
-      name: height
-      in: query
-      required: false
-      description: Resize the image to the specified height in pixels (max 1000).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-      example: 400
-    fontSize:
-      name: fontSize
-      in: query
-      required: false
-      description: Font size in pixels for `/says/` text overlays.
-      schema:
-        type: integer
-        minimum: 8
-        maximum: 200
-      example: 50
-    fontBackground:
-      name: fontBackground
-      in: query
-      required: false
-      description: Background color behind the overlay text.
-      schema:
-        type: string
-      example: black
-    hue:
-      name: hue
-      in: query
-      required: false
-      description: Hue rotation in degrees for `filter=custom`.
-      schema:
-        type: integer
-        minimum: -360
-        maximum: 360
-      example: 60
-    red:
-      name: r
-      in: query
-      required: false
-      description: Red channel multiplier (0-255) for `filter=custom`.
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 255
-      example: 200
-    fontColor:
-      name: fontColor
-      in: query
-      required: false
-      description: Font color name or hex value (e.g., `red`, `#ffffff`).
-      schema:
-        type: string
-      example: white
-    type:
-      name: type
-      in: query
-      required: false
-      description: Sized variant of the image.
-      schema:
-        type: string
-        enum:
-        - xsmall
-        - small
-        - medium
-        - square
-        - sq
-      example: small
-    width:
-      name: width
-      in: query
-      required: false
-      description: Resize the image to the specified width in pixels (max 1000).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-      example: 400
+      example: 1.5
     position:
       name: position
       in: query
@@ -480,6 +312,58 @@ components:
         - entropy
         - attention
       example: center
+    green:
+      name: g
+      in: query
+      required: false
+      description: Green channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 100
+    fontSize:
+      name: fontSize
+      in: query
+      required: false
+      description: Font size in pixels for `/says/` text overlays.
+      schema:
+        type: integer
+        minimum: 8
+        maximum: 200
+      example: 50
+    blur:
+      name: blur
+      in: query
+      required: false
+      description: Blur radius when `filter=blur`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 5
+    html:
+      name: html
+      in: query
+      required: false
+      description: When `true`, return an HTML page that embeds the image.
+      schema:
+        type: boolean
+      example: false
+    type:
+      name: type
+      in: query
+      required: false
+      description: Sized variant of the image.
+      schema:
+        type: string
+        enum:
+        - xsmall
+        - small
+        - medium
+        - square
+        - sq
+      example: small
     blue:
       name: b
       in: query
@@ -490,16 +374,132 @@ components:
         minimum: 0
         maximum: 255
       example: 50
-    saturation:
-      name: saturation
+    brightness:
+      name: brightness
       in: query
       required: false
-      description: Saturation multiplier for `filter=custom`.
+      description: Brightness multiplier for `filter=custom`.
       schema:
         type: number
         minimum: 0
         maximum: 100
-      example: 1.5
+      example: 1.2
+    json:
+      name: json
+      in: query
+      required: false
+      description: When `true`, return a JSON metadata document instead of the binary image.
+      schema:
+        type: boolean
+      example: true
+    fontBackground:
+      name: fontBackground
+      in: query
+      required: false
+      description: Background color behind the overlay text.
+      schema:
+        type: string
+      example: black
+    lightness:
+      name: lightness
+      in: query
+      required: false
+      description: Lightness offset for `filter=custom`.
+      schema:
+        type: number
+        minimum: -100
+        maximum: 100
+      example: 0
+    width:
+      name: width
+      in: query
+      required: false
+      description: Resize the image to the specified width in pixels (max 1000).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+      example: 400
+    height:
+      name: height
+      in: query
+      required: false
+      description: Resize the image to the specified height in pixels (max 1000).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+      example: 400
+    hue:
+      name: hue
+      in: query
+      required: false
+      description: Hue rotation in degrees for `filter=custom`.
+      schema:
+        type: integer
+        minimum: -360
+        maximum: 360
+      example: 60
+    fontColor:
+      name: fontColor
+      in: query
+      required: false
+      description: Font color name or hex value (e.g., `red`, `#ffffff`).
+      schema:
+        type: string
+      example: white
+    red:
+      name: r
+      in: query
+      required: false
+      description: Red channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 200
+    fit:
+      name: fit
+      in: query
+      required: false
+      description: Resize strategy when both width and height are provided.
+      schema:
+        type: string
+        enum:
+        - cover
+        - contain
+        - fill
+        - inside
+        - outside
+      example: cover
+    filter:
+      name: filter
+      in: query
+      required: false
+      description: Visual filter applied to the image.
+      schema:
+        type: string
+        enum:
+        - blur
+        - mono
+        - negate
+        - custom
+      example: mono
+  responses:
+    NotFound:
+      description: Requested cat or resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default 404 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: NotFoundError
+                  message: Cat not found
   schemas:
     Cat:
       title: Cat

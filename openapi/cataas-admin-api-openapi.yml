@@ -160,17 +160,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EditCatRequest:
-      title: EditCatRequest
-      type: object
-      description: Payload for editing a cat document.
-      required:
-      - tags
-      properties:
-        tags:
-          type: string
-          description: Comma-separated list of tags to set on the cat.
-          example: cute,orange,sleepy
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -190,6 +179,17 @@ components:
               type: string
               description: Human-readable error description.
               example: Cat not found
+    EditCatRequest:
+      title: EditCatRequest
+      type: object
+      description: Payload for editing a cat document.
+      required:
+      - tags
+      properties:
+        tags:
+          type: string
+          description: Comma-separated list of tags to set on the cat.
+          example: cute,orange,sleepy
     Cat:
       title: Cat
       type: object

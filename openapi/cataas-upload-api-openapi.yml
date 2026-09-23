@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Cataas Admin Upload API
+  title: Cataas Upload API
   version: 1.0.0
   description: CATAAS (Cat as a Service) is a free, no-authentication REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. It is an open-source project published under the GitHub cataas organization (https://github.com/cataas/cataas) and is consumed primarily as image URLs that can be embedded directly into HTML, README files, and chat applications.
   contact:
@@ -51,21 +51,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UploadCatRequest:
-      title: UploadCatRequest
-      type: object
-      description: Multipart upload payload for a new cat image.
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-          description: The cat image file (JPEG, PNG, or GIF).
-        tags:
-          type: string
-          description: Comma-separated list of tags to apply to the new cat.
-          example: cute,orange
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -85,6 +70,21 @@ components:
               type: string
               description: Human-readable error description.
               example: Cat not found
+    UploadCatRequest:
+      title: UploadCatRequest
+      type: object
+      description: Multipart upload payload for a new cat image.
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The cat image file (JPEG, PNG, or GIF).
+        tags:
+          type: string
+          description: Comma-separated list of tags to apply to the new cat.
+          example: cute,orange
     Cat:
       title: Cat
       type: object
