@@ -281,6 +281,24 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    fontBackground:
+      name: fontBackground
+      in: query
+      required: false
+      description: Background color behind the overlay text.
+      schema:
+        type: string
+      example: black
+    green:
+      name: g
+      in: query
+      required: false
+      description: Green channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 100
     saturation:
       name: saturation
       in: query
@@ -291,6 +309,16 @@ components:
         minimum: 0
         maximum: 100
       example: 1.5
+    width:
+      name: width
+      in: query
+      required: false
+      description: Resize the image to the specified width in pixels (max 1000).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+      example: 400
     position:
       name: position
       in: query
@@ -312,36 +340,26 @@ components:
         - entropy
         - attention
       example: center
-    green:
-      name: g
+    lightness:
+      name: lightness
       in: query
       required: false
-      description: Green channel multiplier (0-255) for `filter=custom`.
+      description: Lightness offset for `filter=custom`.
       schema:
-        type: integer
-        minimum: 0
-        maximum: 255
-      example: 100
-    fontSize:
-      name: fontSize
+        type: number
+        minimum: -100
+        maximum: 100
+      example: 0
+    brightness:
+      name: brightness
       in: query
       required: false
-      description: Font size in pixels for `/says/` text overlays.
-      schema:
-        type: integer
-        minimum: 8
-        maximum: 200
-      example: 50
-    blur:
-      name: blur
-      in: query
-      required: false
-      description: Blur radius when `filter=blur`.
+      description: Brightness multiplier for `filter=custom`.
       schema:
         type: number
         minimum: 0
         maximum: 100
-      example: 5
+      example: 1.2
     html:
       name: html
       in: query
@@ -364,6 +382,24 @@ components:
         - square
         - sq
       example: small
+    fontSize:
+      name: fontSize
+      in: query
+      required: false
+      description: Font size in pixels for `/says/` text overlays.
+      schema:
+        type: integer
+        minimum: 8
+        maximum: 200
+      example: 50
+    json:
+      name: json
+      in: query
+      required: false
+      description: When `true`, return a JSON metadata document instead of the binary image.
+      schema:
+        type: boolean
+      example: true
     blue:
       name: b
       in: query
@@ -374,52 +410,6 @@ components:
         minimum: 0
         maximum: 255
       example: 50
-    brightness:
-      name: brightness
-      in: query
-      required: false
-      description: Brightness multiplier for `filter=custom`.
-      schema:
-        type: number
-        minimum: 0
-        maximum: 100
-      example: 1.2
-    json:
-      name: json
-      in: query
-      required: false
-      description: When `true`, return a JSON metadata document instead of the binary image.
-      schema:
-        type: boolean
-      example: true
-    fontBackground:
-      name: fontBackground
-      in: query
-      required: false
-      description: Background color behind the overlay text.
-      schema:
-        type: string
-      example: black
-    lightness:
-      name: lightness
-      in: query
-      required: false
-      description: Lightness offset for `filter=custom`.
-      schema:
-        type: number
-        minimum: -100
-        maximum: 100
-      example: 0
-    width:
-      name: width
-      in: query
-      required: false
-      description: Resize the image to the specified width in pixels (max 1000).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-      example: 400
     height:
       name: height
       in: query
@@ -430,34 +420,6 @@ components:
         minimum: 1
         maximum: 1000
       example: 400
-    hue:
-      name: hue
-      in: query
-      required: false
-      description: Hue rotation in degrees for `filter=custom`.
-      schema:
-        type: integer
-        minimum: -360
-        maximum: 360
-      example: 60
-    fontColor:
-      name: fontColor
-      in: query
-      required: false
-      description: Font color name or hex value (e.g., `red`, `#ffffff`).
-      schema:
-        type: string
-      example: white
-    red:
-      name: r
-      in: query
-      required: false
-      description: Red channel multiplier (0-255) for `filter=custom`.
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 255
-      example: 200
     fit:
       name: fit
       in: query
@@ -472,6 +434,16 @@ components:
         - inside
         - outside
       example: cover
+    hue:
+      name: hue
+      in: query
+      required: false
+      description: Hue rotation in degrees for `filter=custom`.
+      schema:
+        type: integer
+        minimum: -360
+        maximum: 360
+      example: 60
     filter:
       name: filter
       in: query
@@ -485,21 +457,34 @@ components:
         - negate
         - custom
       example: mono
-  responses:
-    NotFound:
-      description: Requested cat or resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            NotFoundExample:
-              summary: Default 404 response
-              x-microcks-default: true
-              value:
-                error:
-                  name: NotFoundError
-                  message: Cat not found
+    red:
+      name: r
+      in: query
+      required: false
+      description: Red channel multiplier (0-255) for `filter=custom`.
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 255
+      example: 200
+    fontColor:
+      name: fontColor
+      in: query
+      required: false
+      description: Font color name or hex value (e.g., `red`, `#ffffff`).
+      schema:
+        type: string
+      example: white
+    blur:
+      name: blur
+      in: query
+      required: false
+      description: Blur radius when `filter=blur`.
+      schema:
+        type: number
+        minimum: 0
+        maximum: 100
+      example: 5
   schemas:
     Cat:
       title: Cat
@@ -571,6 +556,21 @@ components:
               type: string
               description: Human-readable error description.
               example: Cat not found
+  responses:
+    NotFound:
+      description: Requested cat or resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default 404 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: NotFoundError
+                  message: Cat not found
   securitySchemes:
     bearerAuth:
       type: http

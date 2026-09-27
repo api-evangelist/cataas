@@ -70,21 +70,6 @@ components:
               type: string
               description: Human-readable error description.
               example: Cat not found
-    UploadCatRequest:
-      title: UploadCatRequest
-      type: object
-      description: Multipart upload payload for a new cat image.
-      required:
-      - file
-      properties:
-        file:
-          type: string
-          format: binary
-          description: The cat image file (JPEG, PNG, or GIF).
-        tags:
-          type: string
-          description: Comma-separated list of tags to apply to the new cat.
-          example: cute,orange
     Cat:
       title: Cat
       type: object
@@ -136,6 +121,21 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
+    UploadCatRequest:
+      title: UploadCatRequest
+      type: object
+      description: Multipart upload payload for a new cat image.
+      required:
+      - file
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The cat image file (JPEG, PNG, or GIF).
+        tags:
+          type: string
+          description: Comma-separated list of tags to apply to the new cat.
+          example: cute,orange
   responses:
     BadRequest:
       description: Invalid input

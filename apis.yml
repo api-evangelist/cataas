@@ -1,6 +1,10 @@
 aid: cataas
 deliveryModel:
   model: unknown
+  license_evidence:
+    repo: cataas/cataas
+    spdx: none
+    stars: 25
   open_source: unknown
   commercial: false
   callable_host: true
@@ -9,7 +13,7 @@ deliveryModel:
   source:
   - openapi
   - repository-unlicensed
-  generated: '2026-08-28'
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -45,7 +49,7 @@ tags:
   - Animals
   - Cats
   - Image
-  - Open-Source
+  - Open Source
   - Public APIs
 tags_raw:
   - Animals
@@ -53,12 +57,12 @@ tags_raw:
   - Images
   - Open Source
   - Public APIs
+  - Open-Source
 apis:
 - aid: cataas:cataas-admin-api
   name: Cataas Admin API
   description: Administrative operations on the cat catalog (admin token required)
   humanURL: https://cataas.com/
-  baseURL: https://cataas.com
   tags:
   - Admin
   properties:
@@ -100,7 +104,6 @@ apis:
   name: Cataas Catalog API
   description: Browse cats, tags, and stats programmatically (JSON)
   humanURL: https://cataas.com/
-  baseURL: https://cataas.com
   tags:
   - Catalog
   properties:
@@ -142,7 +145,6 @@ apis:
   name: Cataas Cats API
   description: Random and tagged cat image retrieval
   humanURL: https://cataas.com/
-  baseURL: https://cataas.com
   tags:
   - Cats
   properties:
@@ -184,7 +186,6 @@ apis:
   name: Cataas Upload API
   description: Submit a cat image (rate-limited / moderated)
   humanURL: https://cataas.com/
-  baseURL: https://cataas.com
   tags:
   - Upload
   properties:
