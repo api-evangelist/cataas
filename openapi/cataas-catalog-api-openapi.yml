@@ -131,6 +131,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    CountResponse:
+      title: CountResponse
+      type: object
+      description: Total count of cats in the catalog.
+      required:
+      - count
+      properties:
+        count:
+          type: integer
+          description: Total number of cats in the catalog.
+          example: 9384
     Cat:
       title: Cat
       type: object
@@ -182,17 +193,6 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
-    CountResponse:
-      title: CountResponse
-      type: object
-      description: Total count of cats in the catalog.
-      required:
-      - count
-      properties:
-        count:
-          type: integer
-          description: Total number of cats in the catalog.
-          example: 9384
   securitySchemes:
     bearerAuth:
       type: http

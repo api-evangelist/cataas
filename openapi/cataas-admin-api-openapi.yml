@@ -159,7 +159,66 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: Requested cat or resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            NotFoundExample:
+              summary: Default 404 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: NotFoundError
+                  message: Cat not found
+    Unauthorized:
+      description: Admin token missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            UnauthorizedExample:
+              summary: Default 401 response
+              x-microcks-default: true
+              value:
+                error:
+                  name: UnauthorizedError
+                  message: Missing or invalid admin token
   schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Generic error response.
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
+    EditCatRequest:
+      title: EditCatRequest
+      type: object
+      description: Payload for editing a cat document.
+      required:
+      - tags
+      properties:
+        tags:
+          type: string
+          description: Comma-separated list of tags to set on the cat.
+          example: cute,orange,sleepy
     Cat:
       title: Cat
       type: object
@@ -211,65 +270,6 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
-    EditCatRequest:
-      title: EditCatRequest
-      type: object
-      description: Payload for editing a cat document.
-      required:
-      - tags
-      properties:
-        tags:
-          type: string
-          description: Comma-separated list of tags to set on the cat.
-          example: cute,orange,sleepy
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Generic error response.
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          description: Error details.
-          properties:
-            name:
-              type: string
-              description: Error class name.
-              example: NotFoundError
-            message:
-              type: string
-              description: Human-readable error description.
-              example: Cat not found
-  responses:
-    Unauthorized:
-      description: Admin token missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            UnauthorizedExample:
-              summary: Default 401 response
-              x-microcks-default: true
-              value:
-                error:
-                  name: UnauthorizedError
-                  message: Missing or invalid admin token
-    NotFound:
-      description: Requested cat or resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          examples:
-            NotFoundExample:
-              summary: Default 404 response
-              x-microcks-default: true
-              value:
-                error:
-                  name: NotFoundError
-                  message: Cat not found
   securitySchemes:
     bearerAuth:
       type: http

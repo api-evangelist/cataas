@@ -51,21 +51,25 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UploadCatRequest:
-      title: UploadCatRequest
+    ErrorResponse:
+      title: ErrorResponse
       type: object
-      description: Multipart upload payload for a new cat image.
+      description: Generic error response.
       required:
-      - file
+      - error
       properties:
-        file:
-          type: string
-          format: binary
-          description: The cat image file (JPEG, PNG, or GIF).
-        tags:
-          type: string
-          description: Comma-separated list of tags to apply to the new cat.
-          example: cute,orange
+        error:
+          type: object
+          description: Error details.
+          properties:
+            name:
+              type: string
+              description: Error class name.
+              example: NotFoundError
+            message:
+              type: string
+              description: Human-readable error description.
+              example: Cat not found
     Cat:
       title: Cat
       type: object
@@ -117,25 +121,21 @@ components:
           format: uri
           description: Direct URL to the cat image.
           example: https://cataas.com/cat/595f280b557291a9750ebf66
-    ErrorResponse:
-      title: ErrorResponse
+    UploadCatRequest:
+      title: UploadCatRequest
       type: object
-      description: Generic error response.
+      description: Multipart upload payload for a new cat image.
       required:
-      - error
+      - file
       properties:
-        error:
-          type: object
-          description: Error details.
-          properties:
-            name:
-              type: string
-              description: Error class name.
-              example: NotFoundError
-            message:
-              type: string
-              description: Human-readable error description.
-              example: Cat not found
+        file:
+          type: string
+          format: binary
+          description: The cat image file (JPEG, PNG, or GIF).
+        tags:
+          type: string
+          description: Comma-separated list of tags to apply to the new cat.
+          example: cute,orange
   responses:
     BadRequest:
       description: Invalid input
