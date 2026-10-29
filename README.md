@@ -1,4 +1,4 @@
-# Cataas (cataas)
+# Cataas
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,165 +66,147 @@
 
 Cataas (Cat as a Service) is a free, open-source REST API that returns random cat images and GIFs with optional tags, filters, sizing, and text overlays. The service is widely embedded in tutorials, demos, README files, and chat applications as a friction-free image source. The canonical implementation lives at github.com/cataas/cataas and runs at cataas.com.
 
-**URL:** [Visit APIs.json URL](https://cataas.com/)
+**Areas:** Animals · Cats · Image · Open Source · Public APIs
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=opensource-api-evangelist&utm_content=repo)
+## Cataas on APIs.io
 
-## Tags:
+Everything profiled for Cataas is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cataas/](https://apis.io/providers/cataas/)** — or go straight to one of the APIs or properties below.
 
- - Animals, Cats, Images, Open Source, Public APIs
+### APIs (4)
 
-## Timestamps
+- [Cataas Admin API](https://apis.io/apis/cataas/cataas-admin-api/) — Administrative operations on the cat catalog (admin token required)
+- [Cataas Catalog API](https://apis.io/apis/cataas/cataas-catalog-api/) — Browse cats, tags, and stats programmatically (JSON)
+- [Cataas Cats API](https://apis.io/apis/cataas/cataas-cats-api/) — Random and tagged cat image retrieval
+- [Cataas Upload API](https://apis.io/apis/cataas/cataas-upload-api/) — Submit a cat image (rate-limited / moderated)
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-30
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Cataas
-Random and tagged cat image retrieval with optional sizing, filtering, and text overlay. Includes a JSON catalog API and admin/upload endpoints for the canonical hosted instance.
+#### Agentic access (1)
 
-**Human URL:** [https://cataas.com/](https://cataas.com/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Cataas Agentic Access](https://apis.io/agentic-access/cataas/cataas-agentic-access/)
 
- - Cats, Images
+#### JSON Schema (4)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://cataas.com/)
-- [OpenAPI](openapi/cataas-openapi-original.yml)
-- [JSONSchema](json-schema/cat-schema.json)
-- [JSONSchema](json-schema/count-response-schema.json)
-- [JSONSchema](json-schema/upload-cat-request-schema.json)
-- [JSONSchema](json-schema/edit-cat-request-schema.json)
-- [JSONStructure](json-structure/cat-structure.json)
-- [JSONStructure](json-structure/count-response-structure.json)
-- [JSONStructure](json-structure/upload-cat-request-structure.json)
-- [JSONStructure](json-structure/edit-cat-request-structure.json)
-- [Example](examples/cat-example.json)
-- [Example](examples/count-response-example.json)
-- [Example](examples/upload-cat-request-example.json)
-- [Example](examples/edit-cat-request-example.json)
-- [NaftikoCapability](capabilities/cataas-cats.yaml)
-- [NaftikoCapability](capabilities/cataas-catalog.yaml)
-- [NaftikoCapability](capabilities/cataas-upload.yaml)
-- [NaftikoCapability](capabilities/cataas-admin.yaml)
-- [JavaScript / TypeScript Wrapper (community)](https://github.com/iArmanKarimi/Cataas-API-js)
-- [Go Wrapper (community)](https://github.com/iArmanKarimi/Cataas-API-go)
-- [PHP Wrapper (community)](https://github.com/chimpook/cataas-api-php)
+- [Cat](https://apis.io/schemas/cataas/cat/)
+- [CountResponse](https://apis.io/schemas/cataas/count-response/)
+- [EditCatRequest](https://apis.io/schemas/cataas/edit-cat-request/)
+- [UploadCatRequest](https://apis.io/schemas/cataas/upload-cat-request/)
 
-## Common Properties
+#### JSON Structure (4)
+
+Data models expressed in JSON Structure.
+
+- [Cat Structure](https://apis.io/json-structure/cataas/cat-structure/)
+- [Count Response Structure](https://apis.io/json-structure/cataas/count-response-structure/)
+- [Edit Cat Request Structure](https://apis.io/json-structure/cataas/edit-cat-request-structure/)
+- [Upload Cat Request Structure](https://apis.io/json-structure/cataas/upload-cat-request-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Cataas Context](https://apis.io/jsonld/cataas/cataas-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Cataas Vocabulary](https://apis.io/vocabularies/cataas/cataas-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Cat Example](https://apis.io/examples/cataas/cat-example/)
+- [Count Response Example](https://apis.io/examples/cataas/count-response-example/)
+- [Edit Cat Request Example](https://apis.io/examples/cataas/edit-cat-request-example/)
+- [Upload Cat Request Example](https://apis.io/examples/cataas/upload-cat-request-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Cataas Admin API](https://apis.io/collections/cataas/open-cataas-admin-api/)
+- [Cataas Admin Catalog API](https://apis.io/collections/cataas/open-cataas-catalog-api/)
+- [Cataas Admin Cats API](https://apis.io/collections/cataas/open-cataas-cats-api/)
+- [Cataas Admin Upload API](https://apis.io/collections/cataas/open-cataas-upload-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Cataas — jsonschema rules](https://apis.io/rules/cataas/cataas-jsonschema-spectral-rules/)
+- [Cataas API Rules](https://apis.io/rules/cataas/cataas-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cataas Authentication](https://apis.io/security/cataas/cataas-authentication/)
+- [Cataas Domain Security](https://apis.io/security/cataas/cataas-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://cataas.com/)
-- [GitHubOrganization](https://github.com/cataas)
-- [Canonical Cataas server (Node.js)](https://github.com/cataas/cataas)
-- [Cataas Discord bot](https://github.com/cataas/discord-bot)
-- [Cataas Slack slash command](https://github.com/cataas/slack-command)
-- [Cataas image editor library](https://github.com/cataas/image-editor)
-- [MCP Server (community via Pipeworx Gateway)](https://github.com/pipeworx-io/mcp-cataas)
-- [PublicAPIsListing](https://github.com/public-apis/public-apis)
-- [SpectralRules](rules/cataas-spectral-rules.yml)
-- [Vocabulary](vocabulary/cataas-vocabulary.yaml)
-- [JSON-LD](json-ld/cataas-context.jsonld)
+- [GitHub](https://github.com/cataas)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Random Cat Image | GET /cat returns a random cat image (JPEG, PNG, or GIF). |
-| Tagged Cat Retrieval | GET /cat/{tag} returns a random cat matching one or more comma-separated tags. |
-| Animated GIFs | GET /cat/gif returns a random animated cat. |
-| Text Overlay | GET /cat/says/{text} renders user-supplied text on top of a random cat with configurable font size, color, and background. |
-| Image Filters | filter=blur \| mono \| negate \| custom with per-channel and per-property tuning (brightness, hue, saturation, RGB). |
-| Sizing and Cropping | type, width, height, fit, and position query parameters resize and crop the returned image. |
-| JSON Catalog API | /api/cats, /api/tags, /api/count expose the catalog programmatically. |
-| Content Negotiation | json=true returns a metadata document instead of binary; html=true returns an embedding wrapper page. |
-| Free and Unauthenticated | All read endpoints are public and require no API key. |
+**Kin Score 24.9** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 28.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 0.0 |
 
-| Name | Description |
-|------|-------------|
-| Tutorials and Demos | Embed live cat images in API tutorials, learn-to-code lessons, and conference demos. |
-| README Decoration | Decorate open-source READMEs and personal sites with rotating cat imagery. |
-| Chat Bots and Slash Commands | Slack, Discord, and Teams bots fetch random cats on demand via /cat or /cat/says. |
-| Mocking Image-Heavy APIs | Stand in for a real image-CDN-backed API while prototyping front-end layouts. |
-| Image Pipeline Testing | Exercise resize, format-conversion, and filtering pipelines with predictable image input. |
+**Agent readiness 22.3** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Slack | Official slack-command repo wires /cat into Slack workspaces. |
-| Discord | Official discord-bot repo provides a Cataas Discord integration. |
-| Pipeworx MCP Gateway | Community MCP server (pipeworx-io/mcp-cataas) wraps the API for use by Claude and other MCP clients. |
-| Public APIs Catalog | Listed in the public-apis/public-apis Animals category. |
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
 
-## Solutions
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cataas/](https://apis.io/providers/cataas/).
 
-| Name | Description |
-|------|-------------|
-| Self-Hosted Catalog | Run your own Cataas instance from cataas/cataas (Node.js + MongoDB + sharp) to power internal demos or branded image services. |
+## How this profile is made
 
-## Artifacts
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-Machine-readable API specifications organized by format.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cataas: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### OpenAPI
+## Open an issue
 
-- [Cataas API](openapi/cataas-openapi-original.yml)
-
-### JSON Schema
-
-- [Cat](json-schema/cat-schema.json)
-- [CountResponse](json-schema/count-response-schema.json)
-- [UploadCatRequest](json-schema/upload-cat-request-schema.json)
-- [EditCatRequest](json-schema/edit-cat-request-schema.json)
-
-### JSON Structure
-
-- [Cat](json-structure/cat-structure.json)
-- [CountResponse](json-structure/count-response-structure.json)
-- [UploadCatRequest](json-structure/upload-cat-request-structure.json)
-- [EditCatRequest](json-structure/edit-cat-request-structure.json)
-
-### JSON-LD
-
-- [Cataas Context](json-ld/cataas-context.jsonld)
-
-### Examples
-
-- [cat-example.json](examples/cat-example.json)
-- [count-response-example.json](examples/count-response-example.json)
-- [upload-cat-request-example.json](examples/upload-cat-request-example.json)
-- [edit-cat-request-example.json](examples/edit-cat-request-example.json)
-
-## Capabilities
-
-Naftiko capabilities — one self-contained file per OpenAPI tag, each exposing both a REST adapter and an MCP adapter routed inline through its own consumes block.
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Cataas — Cats](capabilities/cataas-cats.yaml) | Cataas | 7 | Developer / Hobbyist |
-| [Cataas — Catalog](capabilities/cataas-catalog.yaml) | Cataas | 3 | Developer / DataScientist |
-| [Cataas — Upload](capabilities/cataas-upload.yaml) | Cataas | 1 | Contributor |
-| [Cataas — Admin](capabilities/cataas-admin.yaml) | Cataas | 4 | Moderator |
-
-## Vocabulary
-
-- [Cataas Vocabulary](vocabulary/cataas-vocabulary.yaml) — Unified taxonomy mapping 3 resources, 6 actions, 4 workflows, and 5 personas across operational (OpenAPI) and capability (Naftiko) dimensions.
-
-## Rules
-
-- [Cataas Spectral Rules](rules/cataas-spectral-rules.yml) — 30 rules across 12 categories enforcing Cataas API conventions (kebab-case paths, lowerCamelCase operationIds, snake_case schema properties, Title-Case tags, HTTPS-only servers, bearer auth on admin endpoints, mandatory summaries/descriptions/operationIds, Microcks compatibility).
-
-## Notes
-
-This entry was bulk-registered as part of a public-apis catalog sweep on 2026-05-28 and enriched on 2026-05-30 via the full opensource pipeline (18 steps; plans/rate-limits/finops/CRD discovery skipped — Cataas has no hosted commercial offering and is not a Kubernetes-native API).
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cataas/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
